@@ -1,24 +1,3 @@
-<div class="ui grid">
-  <div class="four wide column"></div>
-  <div class="eight wide column">
-
-  <% if (success) { %>
-    <div id="dialog" class="ui success message">
-      <p><%= success %></p>
-    </div>
-  <% } %>
-
-
-
-  <% if (error) { %>
-    <div id="dialog" class="ui error message">
-      <p><%= error %></p>
-    </div>
-  <% } %>
-  </div>
-</div>
-
-
 <script>
 window.msgSuccess  =   '<%= success %>' ;
 window.msgError   =  '<%= error %>' ;

@@ -6,7 +6,8 @@ var flash = require('connect-flash');
 var config = require('config-lite');
 var routes = require('./routes');
 var pkg = require('./package');
-require('events').EventEmitter.prototype._maxListeners = 100;
+var events = require("events");
+
 var app = express();
 
 // 设置模板目录
@@ -59,11 +60,8 @@ app.use(function (req, res, next) {
 
 
 
-
 // 路由
 routes(app);
-
-
 
 
 // 监听端口，启动程序
