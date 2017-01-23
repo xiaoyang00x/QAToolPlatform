@@ -82,6 +82,8 @@ a:hover,a:focus{color:#74777b;text-decoration: none;}
 	border-radius: 15px;
 	font-weight: 600;
 	font-size: 2em;
+	width: 300px;
+    margin: 0 auto;
 	line-height: 1.5;
 	margin-bottom: 0;
 	color: #fff;

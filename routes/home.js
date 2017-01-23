@@ -7,7 +7,12 @@ var router = express.Router();
 // GET /signin 登录页
 router.get('/', function(req, res, next) {
     //res.send(req.flash());
-    res.render('homePage');
+     if(req.session.user!=null)
+    	res.render('homePage');
+     else
+      	res.redirect('/signin');
+
+
 });
 
 // POST /signin 用户登录
