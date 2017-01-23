@@ -33,8 +33,7 @@ app.use(session({
   saveUninitialized: true,  
 }));
 
-
-// flash 中间价，用来显示通知
+// flash 中间件，用来显示通知
 app.use(flash());
 
 

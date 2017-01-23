@@ -7,5 +7,6 @@ module.exports = function (app) {
   app.use('/signin', require('./signin'));
   app.use('/signout', require('./signout'));
   app.use('/home', require('./home'));
+  app.use('/postman', require('./postman'));
 
 };
