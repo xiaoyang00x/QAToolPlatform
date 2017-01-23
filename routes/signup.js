@@ -48,7 +48,6 @@ router.post('/', function(req, res, next) {
  UserDao.getByConditions({'name':name},function(err,result){
     console.log("getByConditions result: " + result);
     if(result.length!=0){
-      console.log("进来了");
       req.flash('error', '用户名已被占用');
       return res.redirect('/signin');
     }else{
@@ -64,7 +63,8 @@ router.post('/', function(req, res, next) {
               next(err);
             }else{
              req.flash('success', '注册成功');
-              console.log("成功");
+              delete user.password;
+              req.session.user = user;
               // 跳转到首页
               res.redirect('/signin');
             }

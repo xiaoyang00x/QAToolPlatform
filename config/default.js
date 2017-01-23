@@ -3,7 +3,7 @@ module.exports = {
   session: {
     secret: 'QAToolPlatform',
     key: 'QAToolPlatform',
-    maxAge: 2592000000
+    maxAge: 6000000
   },
   mongodb: 'mongodb://localhost:27017/QAToolPlatform'
 };
