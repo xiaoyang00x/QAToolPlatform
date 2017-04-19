@@ -8,6 +8,7 @@ module.exports = function (app) {
   app.use('/signout', require('./signout'));
   app.use('/home', require('./home'));
   app.use('/postman', require('./postman'));
+  //app.use('/postman/getToken', require('./postman'));
 
 	  // 404 page
 	app.use(function (req, res) {
@@ -15,7 +16,4 @@ module.exports = function (app) {
 	    res.render('404');
 	  }
 	});
-
-
-
 };

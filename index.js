@@ -87,7 +87,7 @@ routes(app);
 //       filename: 'logs/error.log'
 //     })
 //   ]
-// }));
+// }));<%=test%>
 
 
 // error page

@@ -5,5 +5,5 @@ module.exports = {
     key: 'QAToolPlatform',
     maxAge: 6000000
   },
-  mongodb: 'mongodb://localhost:27017/QAToolPlatform'
+  mongodb: 'mongodb://10.0.1.167:27017/QAToolPlatform'
 };
