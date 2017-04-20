@@ -2,7 +2,7 @@ var fs = require('fs');
 var sha1 = require('sha1');
 var express = require('express');
 var router = express.Router();
-var UserModel = require('../models/users2');
+var UserModel = require('../models/user');
 var UserDao = require('../dao/userDao');
 //var checkNotLogin = require('../middlewares/check').checkNotLogin;
 

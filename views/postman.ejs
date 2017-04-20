@@ -31,7 +31,7 @@
 		    <div class="row">
 		        <!-- form: -->
 		        <section>
-		            <div class="col-lg-8 col-lg-offset-0" >
+		            <div class="col-lg-10 col-lg-offset-0" >
 		                <div class="page-header">
 		                    <h2>获取Token</h2>
 		                </div>
@@ -53,17 +53,6 @@
 		                                   required data-fv-notempty-message="密码不能为空"/>
 		                        </div>
 		                    </div>
-
-		                    <div class="form-group">
-		                       <label class="col-lg-3 control-label">Token</label>
-		                        <div class="col-lg-3">
-		                            <input type="text" class="form-control" name="token"
-		                                   data-fv-trigger="blur"
-		                                   data-fv-message="The username is not valid"
-		                                   placeholder="结果输出"
-		                                   data-fv-notempty-message="请输入用户名&密码请求token"/>
-		                        </div>
-		                    </div>
 		                    <div class="form-group">
 		                        <div class="col-lg-9 col-lg-offset-3">
 		                            <button class="btn btn-primary" " id="getToken">获取token</button>
@@ -79,23 +68,42 @@
 		                    <h2>请求体&结果</h2>
 		                </div>
 
-		                <form id="defaultForm" method="post" class="form-horizontal" action="" ">
+		                <form id="resultForm" class="form-horizontal" >
 		                    <div class="form-group">
 		                        <label class="col-lg-3 control-label">Token</label>
 		                        <div class="col-lg-3">
-		                            <input type="text" class="form-control" name="firstName" required data-fv-notempty-message="TOKEN不能为空" />
+		                            <input type="text" class="form-control" name="token4request" required data-fv-notempty-message="TOKEN不能为空" />
 		                        </div>
 		                    </div>
 
 		                    <div class="form-group">
-		                        <label class="col-lg-3 control-label">URL</label>
+		                        <label class="col-lg-3 control-label">接口地址</label>
 		                        <div class="col-lg-3">
 		                            <input type="text" class="form-control" name="URL"  required data-fv-notempty-message="URL不能为空" />
 		                        </div>
 		                    </div>
 
+
+		                     <div class="form-group">
+		                        <label class="col-lg-3 control-label">接口名</label>
+		                        <div class="col-lg-3">
+		                            <input type="text" class="form-control" name="interfaceName"  required data-fv-notempty-message="接口名不能为空" />
+		                        </div>
+		                    </div>
+
 		                    <div class="form-group">
-		                        <label class="col-lg-3 control-label">Body</label>
+		                        <label class="col-lg-3 control-label">请求方式</label>
+		                        <div class="col-lg-3">
+		                            <select class="form-control" name="method" data-fv-notempty data-fv-notempty-message="请求方式不能为空">
+		                                <option value="">请选择任意一种</option>
+		                                <option value="GET">GET</option>
+		                                <option value="POST">POST</option>
+		                            </select>
+		                        </div>
+		                    </div>
+
+		                    <div class="form-group">
+		                        <label class="col-lg-3 control-label">请求体</label>
 		                        <div class="col-lg-3">
 		                            <textarea placeholder="eg:name=yangyu&age=25" class="form-control" name="body" rows="10" data-fv-stringlength data-fv-stringlength-max="100" data-fv-stringlength-message="body不能超过100个字符"></textarea>
 		                        </div>
@@ -108,7 +116,7 @@
 
 		                    <div class="form-group">
 		                        <div class="col-lg-9 col-lg-offset-3">
-		                            <button type="submit" class="btn btn-primary">发送请求</button>
+		                            <button id="sendRequest" class="btn btn-primary">发送请求</button>
 		                        </div>
 		                    </div>
 		                </form>
@@ -124,7 +132,7 @@
 			$("button#getToken").click(function(){
 				$('#getTokenForm').formValidation();
 				if($("input[name='username']").val().length>0&&$("input[name='password']").val().length>0){
-				 	$("input[name='token']").attr("value","");
+				 	$("input[name='token4request']").attr("value","");
 					$.ajax({
 						cache: true,
 		                type: "POST",
@@ -136,12 +144,37 @@
 		                },
 		                success: function(data) {
 		                	try{
-								  	$("input[name='token']").attr("value",data.msg.data.token);	   	
+								  	$("input[name='token4request']").attr("value",data.msg.data.token);	   	
 								}
 								catch(err)
 								{
-								    $("input[name='token']").attr("value","用户名或密码错误");
+								    $("input[name='token4request']").attr("value","用户名或密码错误");
 								}		                		
+		            	}
+					})
+				}
+		  })
+	    });
+	</script>
+
+
+   	<script type="text/javascript">
+		$(document).ready(function(){
+			$("button#sendRequest").click(function(){
+				$('#resultForm').formValidation();
+				if($("input[name='token4request']").val().length>0&&$("input[name='URL']").val().length>0){
+				 	$("input[name='response']").attr("value","");
+					$.ajax({
+						cache: true,
+		                type: "POST",
+		                url:"http://localhost:3000/postman/getResult",
+		                data:$('#resultForm').serialize(),// 你的formid
+		                async: false,
+		                error: function(request) {
+		                    alert("Connection error");
+		                },
+		                success: function(data) {
+		                	$("textarea[name='response']").text(JSON.stringify(data))
 		            	}
 					})
 				}

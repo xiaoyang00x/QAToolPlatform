@@ -1,4 +1,4 @@
-var User = require('../models/users2.js');
+var User = require('../models/user.js');
 
 
 

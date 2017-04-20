@@ -26,16 +26,18 @@ HttpUtils.postForm = function (url,token,form, callback) {
 
 
 
-HttpUtils.postFormJson = function (url,token,form,callback) {
+
+HttpUtils.postFormJson = function (url,token,form,method,callback) {
     var header = getHeader(token,form);
     let option = {
         url: url,
-        method: "POST",
+        method: method,
         json: true,
         headers: header,
         body: form,
         gzip:true
     };
+
     request(option,function (error, response, body) {
             resultFunction(callback,error,response,body);
     });
@@ -45,8 +47,9 @@ HttpUtils.postFormJson = function (url,token,form,callback) {
 
 function resultFunction(callback,error, response, body){
     console.log("开始了");
+    console.log("body-----" + body);
     if (!error && response.statusCode === 200) {
-        return callback({success: true, msg: body});
+        callback({success: true, msg: body});
         console.log('request is success ');
         
     } else {
@@ -72,7 +75,6 @@ function getHeader(token,body) {
         "Host":"api.shicaidai.com",
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/2.4.0",
-        "Content-Length":"64",
         "Content-Type":"application/x-www-form-urlencoded"
     };
 }
@@ -87,5 +89,7 @@ function createSign(body){
     sign=(sign+"key=jwoxoWHeauio");
     return md5(sign);
 }
+
+
 
 module.exports = HttpUtils;
