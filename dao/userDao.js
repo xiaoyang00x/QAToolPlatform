@@ -116,18 +116,3 @@ module.exports = {
     }
 
 }
-
-
-
-// var userDao = require("./userDao")
-// var user = new User({'name': 'yangyu5',
-//                      'password' : 'yangyu8'});
-
-// userDao.insert(user,function(err,res){
-
-// });
-
-
-// userDao.getByConditions({'name': 'yangyu5','password':'yangyu9'},function(err,res){
-//   console.log(res);
-// });
