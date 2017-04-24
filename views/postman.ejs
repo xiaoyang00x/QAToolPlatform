@@ -29,7 +29,7 @@
                 <input type="text" ng-model="interfaceName" class="form-control" name="postalCode" placeholder="请输入接口名" />
 		<ul >
 			<li ng-repeat="x in list | filter:interfaceName"><span class="fa fa-arrow-right">
-   				 <a onclick="changeArea(this)" value={{x.interfaceName}}>{{(x.interfaceName)}}</a>
+   				 <a style="cursor:pointer" onclick="changeArea(this)" value={{x.interfaceName}}>{{(x.interfaceName)}}</a>
   			</span></li>
 		</ul>
 	</div>
@@ -58,7 +58,7 @@
 		                    <div class="form-group">
 		                        <label class="col-lg-3 control-label">密码</label>
 		                        <div class="col-lg-3">
-		                            <input type="text" placeholder="请输入密码" class="form-control" name="password"
+		                            <input type="password" placeholder="请输入密码" class="form-control" name="password"
 		                                   data-fv-trigger="blur"
 		                                   data-fv-message="The username is not valid"
 		                                   required data-fv-notempty-message="密码不能为空"/>

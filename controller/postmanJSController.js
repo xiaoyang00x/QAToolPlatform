@@ -7,7 +7,7 @@
 					$.ajax({
 						cache: true,
 		                type: "POST",
-		                url:"http://localhost:3000/postman/getToken",
+		                url:"http://10.0.1.167:3000/postman/getToken",
 		                data:$('#getTokenForm').serialize(),// 你的formid
 		                async: false,
 		                error: function(request) {
@@ -37,7 +37,7 @@
 					$.ajax({
 						cache: true,
 		                type: "POST",
-		                url:"http://localhost:3000/postman/getResult",
+		                url:"http://10.0.1.167:3000/postman/getResult",
 		                data:$('#resultForm').serialize(),// 你的formid
 		                async: false,
 		                error: function(request) {
@@ -70,7 +70,7 @@
 							    $.ajax({
 									cache: true,
 					                type: "POST",
-					                url:"http://localhost:3000/postman/save",
+					                url:"http://10.0.1.167:3000/postman/save",
 					                data:$('#resultForm').serialize(),// 你的formid
 					                async: false,
 					                error: function(request) {
@@ -105,7 +105,7 @@
 							    $.ajax({
 									cache: true,
 					                type: "POST",
-					                url:"http://localhost:3000/postman/deleteInterface",
+					                url:"http://10.0.1.167:3000/postman/deleteInterface",
                 					data:{'interfaceName':interfaceName},// 你的formid
 					                async: false,
 					                error: function(request) {
@@ -145,7 +145,7 @@
 		     $.ajax({
 				cache: true,
                 type: "POST",
-                url:"http://localhost:3000/postman/getAllInterfaceByName",
+                url:"http://10.0.1.167:3000/postman/getAllInterfaceByName",
                 data:{'interfaceName':interfaceName},// 你的formid
                 async: false,
                 error: function(request) {
