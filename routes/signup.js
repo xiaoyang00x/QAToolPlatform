@@ -13,10 +13,11 @@ router.get('/', function(req, res, next) {
 
 // POST /signup 用户注册
 router.post('/', function(req, res, next) {
+  console.log("进入注册了");
   var name = req.fields.name;
   var password = req.fields.password;
-  var repassword = req.fields.repassword;
-
+  //var repassword = req.fields.repassword;
+  console.log("进入注册了 用户名是"+name+"密码是"+password);
   // 校验参数
   try {
     if (!(name.length >= 1 && name.length <= 16)) {
@@ -25,9 +26,9 @@ router.post('/', function(req, res, next) {
     if (password.length < 6) {
       throw new Error('密码至少 6 个字符');
     }
-    if (password !== repassword) {
-      throw new Error('两次输入密码不一致');
-    }
+    // if (password !== repassword) {
+    //   throw new Error('两次输入密码不一致');
+    // }
   } catch (e) {
     // 注册失败，异步删除上传的头像
     req.flash('error', e.message);
@@ -54,18 +55,13 @@ router.post('/', function(req, res, next) {
           UserDao.insert(user,function(err, result){
             if(err){
               console.log('err : ' + err);
-               if (e.message.match('E11000 duplicate key')) {
-                req.flash('error', '用户名已被占用');
-                return res.redirect('/signin');
-              }else{
-                req.flash('error', err);
-              }
+              req.flash('error', err);
+              return res.redirect('/signin');           
               next(err);
             }else{
              req.flash('success', '注册成功');
               delete user.password;
               req.session.user = user;
-              // 跳转到首页
               res.redirect('/signin');
             }
         });

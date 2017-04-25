@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     //res.send(req.flash());
      if(req.session.user!=null)
-    	res.render('homePage2');
+    	res.render('homePage');
      else
       	res.redirect('/signin');
 

@@ -23,8 +23,11 @@ router.get('/', function(req, res, next) {
 
 // POST /signin 用户登录
 router.post('/', function(req, res, next) {
+
   var name = req.fields.name;
   var password = req.fields.password;
+
+  console.log('进来了-----------name : '+name +"------password:---"+password);
 
   // 待写入数据库的用户信息
   var user = new UserModel({
@@ -34,11 +37,14 @@ router.post('/', function(req, res, next) {
 
 
   password = sha1(password);
+  console.log(password);
   UserDao.getByConditions({'name':name,'password':password},function(err,result){
   		if(result.length==0){
+        console.log("密码错误了");
   			req.flash('error', '用户名或密码错误');
       		return res.redirect('/signin');
   		}else{
+          console.log("密码正确");
           delete user.password;
           req.session.user = user;
 	      	return res.redirect('/home');
