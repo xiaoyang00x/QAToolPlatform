@@ -37,6 +37,7 @@
     "winston": "^2.3.0",
     "request":"*",
     "querystring":"*",
-    "md5":"*"
+    "md5":"*",
+    "jenkins-api":"*"
   }
 }
