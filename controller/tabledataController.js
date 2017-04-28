@@ -27,7 +27,7 @@
         jqTds[2].innerHTML = '<input type="text" value="'+aData[2]+'">';
         jqTds[3].innerHTML = '<input type="text" value="'+aData[3]+'">';
         jqTds[4].innerHTML = '<input type="text" value="'+aData[4]+'">';
-        jqTds[5].innerHTML = '<a class="edit save" href="#">Save</a><a class="delete" href="#">Delete</a>';
+        jqTds[5].innerHTML = '<a class="edit save" href="#">SAVE</a><a class="delete" href="#">Delete</a>';
       };
 
       function saveRow (oTable02, nRow){

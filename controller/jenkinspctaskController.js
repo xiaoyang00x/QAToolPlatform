@@ -49,24 +49,20 @@ var jenkins = jenkinsapi.init("http://xiaoyang00x:xiaoyang00x@172.18.0.53:9999")
 //build with para
 
 
-// jenkins.build('AndroidAPK', {version: '2.5.0'}, function(err, data) {
-//   if (err){ return console.log(err); }
-//   //console.log(data)
-// 	jenkins.last_build_report('job-in-jenkins', function(err, data) {
-// 	  if (err){ return console.log(err); }
-// 	  console.log(data)
-// 	});
+jenkins.build('H5AutomationTest4system', {deviceType: 'pc',testName:'',isVideo:'false',broswerType:'firefox',isLocalVideo:'false',associationID:'wocaonima'}, function(err, data) {
+  if (err){ return console.log(err); }
+  console.log(data)
 
-// });
+});
 
 // jenkins.job_output('H5AutomationTest', '#99',function(err, data) {
 //   if (err){ return console.log(err); }
 //   console.log(JSON.stringify(data))
 // });
-jenkins.last_build_report('H5AutomationTest', function(err, data) {
-  if (err){ return console.log(err); }
-  console.log(JSON.stringify(data))
-});
+// jenkins.last_build_report('H5AutomationTest', function(err, data) {
+//   if (err){ return console.log(err); }
+//   console.log(JSON.stringify(data))
+// });
 
 // jenkins.queue(function(err, data) {
 //   if (err){ return console.log(err); }

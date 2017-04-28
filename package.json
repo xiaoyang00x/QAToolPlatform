@@ -38,6 +38,9 @@
     "request":"*",
     "querystring":"*",
     "md5":"*",
-    "jenkins-api":"*"
+    "jenkins-api":"*",
+    "xml2js":"*",
+    "xpath.js":"*",
+    "xmldom" : "*"
   }
 }
