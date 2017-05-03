@@ -49,7 +49,7 @@ var jenkins = jenkinsapi.init("http://xiaoyang00x:xiaoyang00x@172.18.0.53:9999")
 //build with para
 
 
-jenkins.build('H5AutomationTest4system', {deviceType: 'pc',testName:'',isVideo:'false',broswerType:'firefox',isLocalVideo:'false',associationID:'wocaonima'}, function(err, data) {
+jenkins.build('H5AutomationTest4system', {deviceType: 'pc',testName:'',isVideo:'false',broswerType:'firefox',isLocalVideo:'false',associationID:'shishijiushishi'}, function(err, data) {
   if (err){ return console.log(err); }
   console.log(data)
 

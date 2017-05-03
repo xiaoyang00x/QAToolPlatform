@@ -9,10 +9,9 @@ var pkg = require('./package');
 var cookieParser = require('cookie-parser');
 var winston = require('winston');
 var expressWinston = require('express-winston');
-
 var app = express();
-
-
+var watchZip = require('./taskdataAndUnzip/watchZip.js');
+var saveData = require('./taskdataAndUnzip/saveData.js');
 
 
 // 设置模板目录
@@ -68,10 +67,6 @@ app.use(function (req, res, next) {
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    //res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    //res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    //res.header("X-Powered-By",' 3.2.1')
-    //res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
 
@@ -102,9 +97,6 @@ routes(app);
 //   ]
 // }));<%=test%>
 
-
-
-
 // error page
 app.use(function (err, req, res, next) {
   res.render('error', {
@@ -117,3 +109,7 @@ app.use(function (err, req, res, next) {
 app.listen(config.port, function () {
   console.log(`${pkg.name} listening on port ${config.port}`);
 });
+
+
+new watchZip();
+new saveData();
