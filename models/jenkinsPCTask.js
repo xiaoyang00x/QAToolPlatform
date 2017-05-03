@@ -3,7 +3,7 @@ var mongoose = require('../lib/mongo');
 
 var JenkinsPCTaskSchema = new Schema({
 	testcase : {type : String },
-	status: { type: Number },  //0:error 1:Runing 2:done 
+	status: { type: String },  //0:Error 1:Runing 2:Done 
 	broswer : {type : String }, //chrome firefox and so on.....
 	pass: { type: String },
 	fail: { type: String },

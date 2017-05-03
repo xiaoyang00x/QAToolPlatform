@@ -1,5 +1,5 @@
 var User = require('../models/user.js');
-
+// var sha1 = require('sha1');
 
 
 module.exports = {
@@ -116,3 +116,15 @@ module.exports = {
     }
 
 }
+
+// var UserModel = require('../models/user');
+// var UserDao = require('../dao/userDao');
+
+
+// var user = new UserModel({
+//   'name': 'fdsfds',
+//   'password': sha1('fdsfds')
+// });
+// UserDao.insert(user,function(err,res){
+
+// })

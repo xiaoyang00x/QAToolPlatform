@@ -6,5 +6,7 @@ module.exports = {
     maxAge: 6000000
   },
   mongodb: 'mongodb://10.0.1.167:27017/QAToolPlatform',
-  URL:'http://10.0.1.167:3000/'
+  URL:'http://10.0.1.167:3000/',
+  reportPath:'/Users/alex/Desktop/report/',
+  unzipPath:'/Users/alex/Desktop/unzip/'
 };

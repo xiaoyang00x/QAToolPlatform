@@ -4,7 +4,7 @@ var watcher = null
 var ready = false
 var path = require('path');
 var fs = require('fs');
-
+var config = require('config-lite');
 function watchZip(){
 
 
@@ -54,9 +54,9 @@ function deleteZip(path_){
 function unzip(path_){
     var unzip = new adm_zip(path_); 
 	var p = new Promise(function(resolve, reject){	
-		console.log( "/Users/alex/Desktop/report/"+path.basename(path_, '.zip'));
+		console.log(config.reportPath+path.basename(path_, '.zip'));
 		if(fs.existsSync(path_)){
-			unzip.extractEntryTo(/*entry name*/"AutoTestReustReport/testng-results.xml", /*target path*/"/Users/alex/Desktop/unzip/"+path.basename(path_, '.zip'), /*maintainEntryPath*/false, /*overwrite*/false);
+			unzip.extractEntryTo(/*entry name*/"AutoTestReustReport/testng-results.xml", /*target path*/config.unzipPath+path.basename(path_, '.zip'), /*maintainEntryPath*/false, /*overwrite*/false);
 		    resolve(path_+'解压完成');
 		}else{
 			 reject('文件都不存在');
@@ -84,7 +84,7 @@ function directoryRemovedListener(path) {
 
 
 	if (!watcher) {
-	watcher = chokidar.watch('/Users/alex/Desktop/report/')
+	watcher = chokidar.watch(config.reportPath)
 	}
 	watcher
 	.on('add', addFileListener)

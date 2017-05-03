@@ -1,24 +1,29 @@
 var parseString = require('xml2js').parseString;
 var rf = require("fs");
-var select = require("xpath.js");
-var dom = require("xmldom").DOMParser;
+var path = require('path');
+
+rf.unlinkSync("/Users/alex/Desktop/unzip/asd/");
 
 
+//同步读取文件c
+// var data = rf.readFileSync('/Users/alex/Desktop/unzip/yangyuwudi/testng-results.xml','utf-8');
+// parseString(data, function (err, result) {
+//     //var reportResult = result['testng-results']['suite'][0]['test'][0]['class'][0]['test-method'];
 
-//同步读取文件
-var data = rf.readFileSync('/Users/alex/Desktop/AutoTestReustReport/testng-results.xml','utf-8');
-var doc = new dom().parseFromString(data);
-var nodes = select(doc, "//testng-results");
+//     var reportResult = result['testng-results']['$'];
+//     console.log("skipped:-------------"+reportResult['skipped']);
+//     console.log("failed:--------------"+reportResult['failed']);
+//     console.log("total:---------------"+reportResult['total']);
+//     console.log("passed:--------------"+reportResult['passed']);
+//         for(var i= 0;i<reportResult.length;i++){
+//     	if(reportResult[i]['$']['name']!='initDriver'&&reportResult[i]['$']['name']!='destoryDriver'){
+//     		console.log(reportResult[i]);
+//     		//console.log(reportResult[i]['$']['name']);
+//     		//console.log(reportResult[i]['$']['status']);
+//     		//console.log(JSON.stringify(reportResult[i]['exception']));
+
+//     	}
+//     }
+// });
 
 
- // var xml = "<book><title>Harry Potter</title></book>"
- // var doc = new dom().parseFromString(xml)    
- // var nodes = select(doc, "//title")
-
-var pass = nodes[0].attributes[3].value;
-var total = nodes[0].attributes[2].value;
-var failed = total-pass;
-
-console.log("total : ----------"+total);
-console.log("pass : ----------"+pass);
-console.log("failed : ----------"+failed);
