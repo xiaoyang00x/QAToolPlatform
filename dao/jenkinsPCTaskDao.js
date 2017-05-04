@@ -42,6 +42,18 @@ module.exports = {
       })
   }
 
+
+  findAllPcTask: function find(callback){
+      JenkinsPCTask.find.("",null,{sort: [['_id', -1]]},function(err,res){
+            if (err) {
+                callback(err,null);
+            }
+            else {
+                callback(null,res);
+            }
+      })
+   }
+
 }
 
 

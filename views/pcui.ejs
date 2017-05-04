@@ -44,18 +44,18 @@
                   <!-- /tile header -->
 
                   <!-- tile body -->
-                  <div class="tile-body color transparent-black rounded-corners">
-                    
+                  <div class="tile-body color transparent-black rounded-corners">                
                     <div class="table-responsive">
                       <table  class="table table-datatable table-custom" id="inlineEditDataTable">
                         <thead>
                           <tr>
                             <th class="no-sort">Testname</th>
                             <th class="sort-alpha">BroswerType</th>
+                            <th class="no-sort">AssociationID</th>
                             <th class="sort-numeric">Pass</th>
                             <th class="sort-numeric">Fail</th>
                             <th class="no-sort">Status</th>
-                            <th class="sort-desc">time</th>
+                            <th class="sort-numeric">time</th>
                             <th class="no-sort">Actions</th>
                           </tr>
                         </thead>
@@ -63,6 +63,7 @@
                           <tr class="odd gradeA">
                             <td>*</td>
                             <td>chrome</td>
+                            <td>123</td>
                             <td>15</td>
                             <td class="text-center">22</td>
                             <td class="text-center">Done</td>
@@ -73,6 +74,7 @@
                           <tr class="odd gradeA">
                             <td>*</td>
                             <td>firefox</td>
+                            <td>321</td>
                             <td>13</td>
                             <td class="text-center">31</td>
                             <td class="text-center">Running</td>
@@ -83,6 +85,7 @@
                           <tr class="odd gradeA">
                             <td>*</td>
                             <td>firefox</td>
+                            <td>456</td>
                             <td>14</td>
                             <td class="text-center">26</td>
                             <td class="text-center">Running</td>
@@ -114,9 +117,6 @@
 
 
 
-
-
-
         </div>
         <!-- Page content end -->
 
@@ -129,4 +129,5 @@
 
     </div>
 
+<script  type="text/javascript" src="PCUITableDataController.js"></script>
 <% include tabledataFooter.ejs %>

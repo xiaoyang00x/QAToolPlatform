@@ -11,7 +11,7 @@ module.exports = function (app) {
   app.use('/pcui', require('./pcui'));
   app.use('/appui', require('./appui'));
   app.use('/interfaceAuto', require('./interfaceAuto'));
-  //app.use('/postman/getToken', require('./postman'));
+  app.use('/jenkins4pcui', require('./jenkins4pcui'));
 
 	  // 404 page
 	app.use(function (req, res) {
