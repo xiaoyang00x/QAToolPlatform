@@ -1,4 +1,4 @@
- $(function(){
+  $(function(){
 
       // Add custom class to pagination div
       $.fn.dataTableExt.oStdClasses.sPaging = 'dataTables_paginate paging_bootstrap paging_custom';
@@ -24,20 +24,22 @@
         var jqTds = $('>td', nRow);
         jqTds[0].innerHTML = '<input type="text" value="'+aData[0]+'">';
         jqTds[1].innerHTML = '<input type="text" value="'+aData[1]+'">';
-        jqTds[2].innerHTML = '<input type="text" value="'+aData[2]+'">';
-        jqTds[3].innerHTML = '<input type="text" value="'+aData[3]+'">';
-        jqTds[4].innerHTML = '<input type="text" value="'+aData[4]+'">';
-        jqTds[5].innerHTML = '<a class="edit save" href="#">SAVE</a><a class="delete" href="#">Delete</a>';
+        //jqTds[2].innerHTML = '<input type="text" value="'+aData[2]+'">';
+        //jqTds[3].innerHTML = '<input type="text" value="'+aData[3]+'">';
+        //jqTds[4].innerHTML = '<input type="text" value="'+aData[4]+'">';
+        //jqTds[5].innerHTML = '<input type="text" value="'+aData[5]+'">';
+        jqTds[6].innerHTML = '<a class="edit save" href="#">Save</a><a class="delete" href="#">Delete</a>';
       };
 
       function saveRow (oTable02, nRow){
         var jqInputs = $('input', nRow);
         oTable02.fnUpdate( jqInputs[0].value, nRow, 0, false );
         oTable02.fnUpdate( jqInputs[1].value, nRow, 1, false );
-        oTable02.fnUpdate( jqInputs[2].value, nRow, 2, false );
-        oTable02.fnUpdate( jqInputs[3].value, nRow, 3, false );
-        oTable02.fnUpdate( jqInputs[4].value, nRow, 4, false );
-        oTable02.fnUpdate( '<a class="edit" href="#">Edit</a><a class="delete" href="#">Delete</a>', nRow, 5, false );
+        //oTable02.fnUpdate( jqInputs[2].value, nRow, 2, false );
+        //oTable02.fnUpdate( jqInputs[3].value, nRow, 3, false );
+        //oTable02.fnUpdate( jqInputs[4].value, nRow, 4, false );
+        //oTable02.fnUpdate( jqInputs[5].value, nRow, 5, false );
+        oTable02.fnUpdate( '<a class="edit" href="#">Edit</a><a class="delete" href="#">Delete</a>', nRow, 6, false );
         oTable02.fnDraw();
       };
 
@@ -59,8 +61,13 @@
         }
       });
 
+
+
+
+
+      //------------
       // Append add row button to table
-      var addRowLink = '<a href="#" id="addRow" class="btn btn-default btn-xs add-row">Add task</a>'
+      var addRowLink = '<a href="#" id="addRow" class="btn btn-default btn-xs add-row">Add row</a>'
       $('#inlineEditDataTable_wrapper').append(addRowLink);
 
       var nEditing = null;
@@ -74,7 +81,7 @@
           return;
         }
         
-        var aiNew = oTable02.fnAddData([ '', '', '', '', '', '<a class="edit" href="">Edit</a>', '<a class="delete" href="">Delete</a>' ]);
+        var aiNew = oTable02.fnAddData([ '', '', '', '', '', '','<a class="edit" href="">Edit</a>', '<a class="delete" href="">Delete</a>' ]);
         var nRow = oTable02.fnGetNodes(aiNew[0]);
         editRow(oTable02, nRow);
         nEditing = nRow;
