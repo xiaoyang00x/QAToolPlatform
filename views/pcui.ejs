@@ -37,30 +37,30 @@
                   <div class="tile-header transparent">
                     <h1><strong>执行列表</strong></h1>
                     <div class="controls">
-                      <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                      <a href="#" class="refresh" onclick="window.location.reload()"><i class="fa fa-refresh"></i></a>
                       <a href="#" class="remove"><i class="fa fa-times"></i></a>
                     </div>
                   </div>
                   <!-- /tile header -->
 
                   <!-- tile body -->
-                  <div class="tile-body color transparent-black rounded-corners" ng-app="myApp" ng-controller="getAllPCUITask">                
+                  <div class="tile-body color transparent-black rounded-corners" >                
                     <div class="table-responsive">
                       <table  class="table table-datatable table-custom" id="inlineEditDataTable">
                         <thead>
                           <tr>
-                            <th class="no-sort">Testname</th>
+                            <th class="no-sort">TestGroup</th>
                             <th class="sort-alpha">BroswerType</th>
-                            <th class="no-sort">AssociationID</th>
+                            <th class="sort-numeric">AssociationID</th>
                             <th class="sort-numeric">Pass</th>
                             <th class="sort-numeric">Fail</th>
-                            <th class="no-sort">Status</th>
+                            <th class="sort-alpha">Status</th>
                             <th class="sort-numeric">time</th>
                             <th class="no-sort">Actions</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="odd gradeA">
+                          <!-- <tr class="odd gradeA">
                             <td>*</td>
                             <td>chrome</td>
                             <td>123</td>
@@ -69,29 +69,7 @@
                             <td class="text-center">Done</td>
                             <td>2017/05/26 08:21:36</td>
                             <td class="actions text-center"><a class="edit" href="#">Edit</a><a class="delete" href="#">Delete</a></td>
-                          </tr>
-
-                          <tr class="odd gradeA">
-                            <td>*</td>
-                            <td>firefox</td>
-                            <td>321</td>
-                            <td>13</td>
-                            <td class="text-center">31</td>
-                            <td class="text-center">Running</td>
-                            <td>2017/05/27 08:21:22</td>
-                            <td class="actions text-center"><a class="edit" href="#">Edit</a><a class="delete" href="#">Delete</a></td>
-                          </tr>
-
-                          <tr class="odd gradeA">
-                            <td>*</td>
-                            <td>firefox</td>
-                            <td>456</td>
-                            <td>14</td>
-                            <td class="text-center">26</td>
-                            <td class="text-center">Running</td>
-                            <td>2017/05/27 08:21:39</td>
-                            <td class="actions text-center"><a class="edit" href="#">Edit</a><a class="delete" href="#">Delete</a></td>
-                          </tr>
+                          </tr> -->
                         </tbody>
                       </table>
                     </div>

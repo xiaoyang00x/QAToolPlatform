@@ -28,7 +28,14 @@ function addDirecotryListener(path_) {
     })
     .catch(function(reason){
         console.log('rejected123213');
+
         console.log(reason);
+
+        updateVoidJenkinsTask(path_)
+        .then(function(data){
+          console.log(data);
+          return deleteDirecotry(path_)
+        })
     })
   }
 }
@@ -81,6 +88,26 @@ function updateJenkinsTask(path_){
     });
   })
       return p;   
+}
+
+
+function updateVoidJenkinsTask(path_){
+        var p = new Promise(function(resolve, reject){
+          var associationID = path.basename(path_);
+          var data = rf.readFileSync(path_+'/testng-results.xml','utf-8');
+          parseString(data, function (err, result) {
+            var reportResult = result['testng-results']['$'];
+            jenkinsPCTaskDao.update({associationID:associationID},{pass:'0',fail:'0',status:'Error'},function(err,res){
+                     if(err){
+                        reject(associationID+'更新失败');             
+                      }
+                      else{
+                        resolve(associationID+'更新完成');    
+                      }      
+            })
+          });
+        })
+            return p; 
 }
 
 

@@ -2,7 +2,8 @@
 angular.module('myApp', []).controller('getAllPCUITask', function($scope,$http) {
    var url = 'http://10.0.1.167:3000/jenkins4pcui/getAllPCUITask';// URL where the Node.js server is running 
     $http.get(url).success(function(data) {
-       $scope.list  = data
+       $scope.lists  = data
+       console.log("data-------------------:"+data);
     });
 });
 
@@ -58,14 +59,14 @@ $(function(){
       var jqTds = $('>td', nRow);
       jqTds[0].innerHTML = '<input type="text" value="'+aData[0]+'">';
       jqTds[1].innerHTML = '<input type="text" value="'+aData[1]+'">';
-      jqTds[7].innerHTML = '<a class="edit save" href="#">Save</a><a class="delete" href="#">Delete</a>';
+      jqTds[7].innerHTML = '<a class="edit save" href="#">Run</a><a class="delete" href="#">Delete</a>';
     };
 
     function saveRow (oTable02, nRow){
       var jqInputs = $('input', nRow);
       oTable02.fnUpdate( jqInputs[0].value, nRow, 0, false );
       oTable02.fnUpdate( jqInputs[1].value, nRow, 1, false );
-      oTable02.fnUpdate( '<a class="edit" href="#">Edit</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
+      oTable02.fnUpdate( '<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
 
       console.log($(nRow).find('td')[1].innerHTML);
       console.log(nRow);
@@ -79,8 +80,8 @@ $(function(){
       console.log('PC'+AssociationID);
       console.log(Status);
       console.log(Time);
-      if(TestName.length==0 | Broswertype==0){
-        alert("TestName或者Broswertype不能为空！！！！！！！！");
+      if(Broswertype==0){
+        alert("Broswertype不能为空！！！！！！！！");
         $(".refresh").click();
         return;
       }
@@ -95,8 +96,7 @@ $(function(){
                   alert("Connection error");
               },
               success: function(data) {
-                  alert(JSON.stringify(data));
-                  $(".refresh").click();
+                  window.location.reload();
               }          
       })
       oTable02.fnDraw();
@@ -140,7 +140,7 @@ $(function(){
         return;
       }
       
-      var aiNew = oTable02.fnAddData([ '', '', '', '', '', '','','<a class="edit" href="">Edit</a>', '<a class="delete" href="">Delete</a>' ]);
+      var aiNew = oTable02.fnAddData([ '', '', '', '', '', '','','<a class="edit" href="">Rerun</a>', '<a class="delete" href="">Delete</a>' ]);
       var nRow = oTable02.fnGetNodes(aiNew[0]);
       editRow(oTable02, nRow);
       nEditing = nRow;
@@ -170,7 +170,7 @@ $(function(){
         editRow(oTable02, nRow);
         nEditing = nRow;
       }
-      else if (nEditing == nRow && this.innerHTML == "Save") {
+      else if (nEditing == nRow && this.innerHTML == "Run") {
         /* This row is being edited and should be saved */
         saveRow(oTable02, nEditing);
         nEditing = null;
@@ -184,6 +184,43 @@ $(function(){
 
     //initialize chosen
      $('.dataTables_length select').chosen({disable_search_threshold: 10});
+
+
     
+    function editRow (oTable02, nRow){
+      var aData = oTable02.fnGetData(nRow);
+      var jqTds = $('>td', nRow);
+      jqTds[0].innerHTML = '<input type="text" value="'+aData[0]+'">';
+      jqTds[1].innerHTML = '<input type="text" value="'+aData[1]+'">';
+      jqTds[7].innerHTML = '<a class="edit save" href="#">Run</a><a class="delete" href="#">Delete</a>';
+    };
+
+    function initTable(oTable02){
+
+      $.ajax({
+      cache: true,
+              type: "GET",
+              url:"http://10.0.1.167:3000/jenkins4pcui/getAllPCUITask",
+              async: false,
+              error: function(request) {
+                  alert("Connection error");
+              },
+              success: function(data) {
+                //data[i].testname,data[i].broswertype,data[i].associationID,data[i].pass,data[i].fail,data[i].status,data[i].createtime,
+                  for(var i=0;i<data.length;i++){
+                    if(data[i].testname==""){
+                      data[i].testname="All";
+                    }
+                    var aiNew = oTable02.fnAddData([data[i].testname,data[i].broswertype,data[i].associationID,data[i].pass,data[i].fail,data[i].status,data[i].createtime,'<a class="edit" href="">Rerun</a>', '<a class="delete" href="">Delete</a>' ]);
+                    var nRow = oTable02.fnGetNodes(aiNew[0]);
+                    oTable02.fnUpdate( '<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
+                    $(nRow).find('td:last-child').addClass('actions text-center'); 
+                  }    
+              }          
+         })
+    };
+
+    initTable(oTable02);
+
   })
 

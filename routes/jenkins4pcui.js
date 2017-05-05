@@ -37,7 +37,9 @@ router.post('/', function(req, res, next) {
     	'broswertype':Broswertype,
     	'status':Status,
     	'associationID':AssociationID,
-    	'createtime':Time
+    	'createtime':Time,
+        'pass':'',//默认是0
+        'fail':'',//默认是0
     });
   
 	jenkins.build('H5AutomationTest4system', {deviceType: 'pc',testName:TestName,isVideo:'false',broswerType:Broswertype,isLocalVideo:'false',associationID:AssociationID}, function(err, data) {
