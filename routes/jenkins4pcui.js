@@ -13,9 +13,12 @@ router.get('/', function(req, res, next) {
   res.render('home');
 });
 
-router.get('/', function(req, res, next) {
-  //res.render('postman');
+router.get('/getAllPCUITask', function(req, res, next) {
+    jenkinsPCTaskDao.findAllPcTask(function(err,result){
+        res.json(result);
+    });
 });
+
 
 
 
