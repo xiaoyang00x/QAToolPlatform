@@ -4,6 +4,9 @@ var router = express.Router();
 var JenkinsPCTask = require('../models/jenkinsPCTask.js');
 var jenkinsPCTaskDao = require('../dao/jenkinsPCTaskDao');
 
+//var Autotest = require('../models/autotest')
+var autotestDao = require('../dao/autotestDao');
+
 var jenkins = jenkinsapi.init("http://xiaoyang00x:xiaoyang00x@172.18.0.53:9999");
 
 
@@ -18,6 +21,29 @@ router.get('/getAllPCUITask', function(req, res, next) {
         res.json(result);
     });
 });
+
+
+
+
+router.post('/deletePCUITask', function(req, res, next) {
+    var AssociationID = req.fields.AssociationID;
+    console.log("进来了----------AssociationID" + AssociationID);
+    jenkinsPCTaskDao.del({"associationID":AssociationID})
+    .then(function(data){
+        console.log("AssociationID jenkinsPCTask 删除成功");
+        return autotestDao.del({"associationID":AssociationID})
+    })
+    .then(function(data){
+        console.log("AssociationID autoTask 删除成功");
+        res.json(data);
+    })
+    .catch(function(reason){
+        console.log('rejected');
+        console.log(reason);
+    })
+});
+
+
 
 
 

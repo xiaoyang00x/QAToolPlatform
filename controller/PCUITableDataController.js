@@ -1,13 +1,3 @@
-
-angular.module('myApp', []).controller('getAllPCUITask', function($scope,$http) {
-   var url = 'http://10.0.1.167:3000/jenkins4pcui/getAllPCUITask';// URL where the Node.js server is running 
-    $http.get(url).success(function(data) {
-       $scope.lists  = data
-       console.log("data-------------------:"+data);
-    });
-});
-
-
 $(function(){
 
 
@@ -66,7 +56,7 @@ $(function(){
       var jqInputs = $('input', nRow);
       oTable02.fnUpdate( jqInputs[0].value, nRow, 0, false );
       oTable02.fnUpdate( jqInputs[1].value, nRow, 1, false );
-      oTable02.fnUpdate( '<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
+      //oTable02.fnUpdate( '<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
 
       console.log($(nRow).find('td')[1].innerHTML);
       console.log(nRow);
@@ -121,9 +111,6 @@ $(function(){
     });
 
 
-
-
-
     //------------
     // Append add row button to table
     var addRowLink = '<a href="#" id="addRow" class="btn btn-default btn-xs add-row">Add Task</a>'
@@ -152,10 +139,32 @@ $(function(){
     // Delete row initialize
     $(document).on( "click", "#inlineEditDataTable a.delete", function(e) {
       e.preventDefault();
-      
       var nRow = $(this).parents('tr')[0];
+      var AssociationID = $(nRow).find('td')[2].innerHTML;
       oTable02.fnDeleteRow( nRow );
+
+      $.ajax({
+      cache: true,
+              type: "POST",
+              url:"http://10.0.1.167:3000/jenkins4pcui/deletePCUITask",
+              data:{"AssociationID":AssociationID},
+              async: false,
+              error: function(request) {
+                  alert("Connection error");
+              },
+              success: function(data) {
+                  window.location.reload();
+              }          
+      })
     });
+
+
+        // Delete row initialize
+    $(document).on( "click", "#inlineEditDataTable a.cancel", function(e) {
+                  window.location.reload();
+    });
+
+
 
     // Edit row initialize
     $(document).on( "click", "#inlineEditDataTable a.edit", function(e) {
@@ -167,7 +176,7 @@ $(function(){
       if (nEditing !== null && nEditing != nRow){
         /* A different row is being edited - the edit should be cancelled and this row edited */
         restoreRow(oTable02, nEditing);
-        editRow(oTable02, nRow);
+        cancelRow(oTable02, nRow);
         nEditing = nRow;
       }
       else if (nEditing == nRow && this.innerHTML == "Run") {
@@ -177,7 +186,7 @@ $(function(){
       }
       else {
         /* No row currently being edited */
-        editRow(oTable02, nRow);
+        cancelRow(oTable02, nRow);
         nEditing = nRow;
       }
     });
@@ -192,7 +201,16 @@ $(function(){
       var jqTds = $('>td', nRow);
       jqTds[0].innerHTML = '<input type="text" value="'+aData[0]+'">';
       jqTds[1].innerHTML = '<input type="text" value="'+aData[1]+'">';
-      jqTds[7].innerHTML = '<a class="edit save" href="#">Run</a><a class="delete" href="#">Delete</a>';
+      jqTds[7].innerHTML = '<a class="edit save" href="#">Run</a><a class="delete" href="#">delete</a>';
+    };
+
+
+    function cancelRow (oTable02, nRow){
+      var aData = oTable02.fnGetData(nRow);
+      var jqTds = $('>td', nRow);
+      jqTds[0].innerHTML = '<input type="text" value="'+aData[0]+'">';
+      jqTds[1].innerHTML = '<input type="text" value="'+aData[1]+'">';
+      jqTds[7].innerHTML = '<a class="edit save" href="#">Run</a><a class="cancel" href="#">cancel</a>';
     };
 
     function initTable(oTable02){

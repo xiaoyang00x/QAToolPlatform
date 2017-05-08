@@ -20,6 +20,28 @@ module.exports = {
       });
   },
 
+    /**
+    * 通过属性删除数据
+    * wherestr : 属性条件
+    */
+    del: function del(wherestr){
+
+        var p = new Promise(function(resolve, reject){
+
+          Autotest.remove(wherestr, function(err, res){
+              if (err) {
+                 reject("删除失败");
+              }
+              else {
+                resolve("删除成功");
+              }
+          })
+        })
+            return p;    
+    },
+
+
+
 
     /**
     * 更新

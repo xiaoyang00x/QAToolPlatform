@@ -28,9 +28,7 @@ function addDirecotryListener(path_) {
     })
     .catch(function(reason){
         console.log('rejected123213');
-
         console.log(reason);
-
         updateVoidJenkinsTask(path_)
         .then(function(data){
           console.log(data);
@@ -97,7 +95,7 @@ function updateVoidJenkinsTask(path_){
           var data = rf.readFileSync(path_+'/testng-results.xml','utf-8');
           parseString(data, function (err, result) {
             var reportResult = result['testng-results']['$'];
-            jenkinsPCTaskDao.update({associationID:associationID},{pass:'0',fail:'0',status:'Error'},function(err,res){
+            jenkinsPCTaskDao.update({associationID:associationID},{pass:'0',fail:'0',status:'Void'},function(err,res){
                      if(err){
                         reject(associationID+'更新失败');             
                       }
