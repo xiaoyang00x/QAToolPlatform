@@ -150,7 +150,7 @@ $(function(){
               data:{"AssociationID":AssociationID},
               async: false,
               error: function(request) {
-                  alert("Connection error");
+                  console.log(request);
               },
               success: function(data) {
                   window.location.reload();
@@ -232,6 +232,7 @@ $(function(){
                     var aiNew = oTable02.fnAddData([data[i].testname,data[i].broswertype,data[i].associationID,data[i].pass,"data[i].fail",data[i].status,data[i].createtime,'<a class="edit" href="">Rerun</a>', '<a class="delete" href="">Delete</a>' ]);
                     var nRow = oTable02.fnGetNodes(aiNew[0]);
                     var jqTds = $('>td', nRow);
+                    jqTds[3].innerHTML = '<a href="/autotask?AssociationID='+data[i].associationID+'" " > <font color=white><td type="text">'+data[i].pass+'</font></td><a>';
                     jqTds[4].innerHTML = '<a href="/autotask?AssociationID='+data[i].associationID+'" " > <font color=white><td type="text">'+data[i].fail+'</font></td><a>';
                     oTable02.fnUpdate('<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
                     $(nRow).find('td:last-child').addClass('actions text-center'); 
