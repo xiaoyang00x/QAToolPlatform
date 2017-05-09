@@ -1,12 +1,12 @@
-var Autotest = require('../models/autotest.js');
+var Autotask = require('../models/autotask.js');
 module.exports = {
 
     /**
     * 插入
     * user : User模型对象
     */
-    insert: function insert(autotest,callback) {
-      autotest.save(function (err, res) {
+    insert: function insert(autotask,callback) {
+      autotask.save(function (err, res) {
           if (err) {
               console.log("Error:" + err);
               console.log("")
@@ -28,7 +28,7 @@ module.exports = {
 
         var p = new Promise(function(resolve, reject){
 
-          Autotest.remove(wherestr, function(err, res){
+          Autotask.remove(wherestr, function(err, res){
               if (err) {
                  reject("删除失败");
               }
@@ -37,8 +37,31 @@ module.exports = {
               }
           })
         })
-            return p;    
+
     },
+
+
+
+
+    /**
+      * 通过条件查询
+      * wherestr : 属性条件 / 为空的时候查询所有
+      */
+    getByConditions: function getByConditions(wherestr){
+
+        var p = new Promise(function(resolve, reject){
+
+          Autotask.find(wherestr, function(err, res){
+              if (err) {
+                reject(err);
+              }
+              else {
+                resolve(res);
+              }
+          })
+        })
+        return p;    
+},
 
 
 
@@ -49,7 +72,7 @@ module.exports = {
     * updatestr： 更新条件
     */
     update: function update(wherestr,updatestr){
-      User.update(wherestr, updatestr, function(err, res){
+      Autotask.update(wherestr, updatestr, function(err, res){
           if (err) {
               console.log("Error:" + err);
           }

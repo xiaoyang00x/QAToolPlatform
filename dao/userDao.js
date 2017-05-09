@@ -114,7 +114,6 @@ module.exports = {
             }
         })
     }
-
 }
 
 // var UserModel = require('../models/user');

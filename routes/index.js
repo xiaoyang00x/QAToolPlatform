@@ -12,6 +12,7 @@ module.exports = function (app) {
   app.use('/appui', require('./appui'));
   app.use('/interfaceAuto', require('./interfaceAuto'));
   app.use('/jenkins4pcui', require('./jenkins4pcui'));
+  app.use('/autotask', require('./autotask'));
 
 	  // 404 page
 	app.use(function (req, res) {

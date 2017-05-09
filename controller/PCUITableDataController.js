@@ -229,9 +229,11 @@ $(function(){
                     if(data[i].testname==""){
                       data[i].testname="All";
                     }
-                    var aiNew = oTable02.fnAddData([data[i].testname,data[i].broswertype,data[i].associationID,data[i].pass,data[i].fail,data[i].status,data[i].createtime,'<a class="edit" href="">Rerun</a>', '<a class="delete" href="">Delete</a>' ]);
+                    var aiNew = oTable02.fnAddData([data[i].testname,data[i].broswertype,data[i].associationID,data[i].pass,"data[i].fail",data[i].status,data[i].createtime,'<a class="edit" href="">Rerun</a>', '<a class="delete" href="">Delete</a>' ]);
                     var nRow = oTable02.fnGetNodes(aiNew[0]);
-                    oTable02.fnUpdate( '<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
+                    var jqTds = $('>td', nRow);
+                    jqTds[4].innerHTML = '<a href="/autotask?AssociationID='+data[i].associationID+'" " > <font color=white><td type="text">'+data[i].fail+'</font></td><a>';
+                    oTable02.fnUpdate('<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
                     $(nRow).find('td:last-child').addClass('actions text-center'); 
                   }    
               }          
@@ -239,6 +241,7 @@ $(function(){
     };
 
     initTable(oTable02);
+
 
   })
 

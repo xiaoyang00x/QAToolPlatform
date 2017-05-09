@@ -5,7 +5,7 @@ var JenkinsPCTask = require('../models/jenkinsPCTask.js');
 var jenkinsPCTaskDao = require('../dao/jenkinsPCTaskDao');
 
 //var Autotest = require('../models/autotest')
-var autotestDao = require('../dao/autotestDao');
+var autotaskDao = require('../dao/autotaskDao');
 
 var jenkins = jenkinsapi.init("http://xiaoyang00x:xiaoyang00x@172.18.0.53:9999");
 
@@ -31,7 +31,7 @@ router.post('/deletePCUITask', function(req, res, next) {
     jenkinsPCTaskDao.del({"associationID":AssociationID})
     .then(function(data){
         console.log("AssociationID jenkinsPCTask 删除成功");
-        return autotestDao.del({"associationID":AssociationID})
+        return autotaskDao.del({"associationID":AssociationID})
     })
     .then(function(data){
         console.log("AssociationID autoTask 删除成功");
