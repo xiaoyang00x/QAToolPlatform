@@ -35,7 +35,7 @@ app.use(session({
     url: config.mongodb// mongodb 地址
   }),
   resave: false,  
-  saveUninitialized: true,  
+  saveUninitialized: true,
 }));
 
 // flash 中间件，用来显示通知
