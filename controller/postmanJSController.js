@@ -135,7 +135,7 @@ function changeArea(obj) {
         success: function (data) {
             var data = data[0];
             $("input[name='token4request']").attr("value", data.token4request);
-            $("input[name='URL']").attr("value", data.serverIP);
+            $("input[name='URL']").attr("value", data.URL);
             $("input[name='interfaceName']").attr("value", data.interfaceName);
             $("select[name='method']").val(data.method);
             $("textarea[name='body']").text(data.body);
