@@ -2,12 +2,12 @@
 
         <!-- Page content -->
         <div id="content" class="col-md-12">
-          
+
 
 
           <!-- page header -->
           <div class="pageheader">
-            
+
 
             <h2><i class="fa fa-lightbulb-o" style="line-height: 48px;padding-left: 0;"></i> AppUI自动化<span></span></h2>
 
@@ -24,11 +24,11 @@
             <!-- row -->
             <div class="row">
 
-              
+
               <!-- col 12 -->
               <div class="col-md-12">
-                
-            
+
+
 
 
 
@@ -49,7 +49,7 @@
 
                   <!-- tile body -->
                   <div class="tile-body color transparent-black rounded-corners">
-                    
+
                     <div class="table-responsive">
                       <table  class="table table-datatable table-custom" id="inlineEditDataTable">
                         <thead>
@@ -349,7 +349,7 @@
 
                   </div>
                   <!-- /tile body -->
-                
+
 
 
                 </section>
@@ -360,10 +360,10 @@
               <!-- /col 12 -->
 
 
-              
+
             </div>
             <!-- /row -->
-          
+
 
 
           </div>
@@ -388,14 +388,14 @@
             <li class=""><a href="#mmenu-friends" data-toggle="tab"><i class="fa fa-heart"></i></a></li>
             <li class=""><a href="#mmenu-settings" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
           </ul>
-              
+
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane active" id="mmenu-users">
               <h5><strong>Online</strong> Users</h5>
 
               <ul class="users-list">
-                
+
                 <li class="online">
                   <div class="media">
                     <a class="pull-left profile-photo" href="#">
@@ -411,7 +411,7 @@
 
                 <li class="online">
                   <div class="media">
-                    
+
                     <a class="pull-left profile-photo" href="#">
                       <img class="media-object" src="assets/images/arnold-avatar.jpg" alt>
                     </a>
@@ -484,7 +484,7 @@
               <h5><strong>Offline</strong> Users</h5>
 
               <ul class="users-list">
-                
+
                 <li class="offline">
                   <div class="media">
                     <a class="pull-left profile-photo" href="#">
@@ -500,7 +500,7 @@
 
                 <li class="offline">
                   <div class="media">
-                    
+
                     <a class="pull-left profile-photo" href="#">
                       <img class="media-object" src="assets/images/random-avatar5.jpg" alt>
                     </a>
@@ -510,7 +510,7 @@
                       <small><i class="fa fa-map-marker"></i> Rome, Italia</small>
                       <span class="badge badge-outline status"></span>
                     </div>
-                    
+
                   </div>
                 </li>
 
@@ -562,7 +562,7 @@
               <h5><strong>Chat</strong> History</h5>
 
               <ul class="history-list">
-                
+
                 <li class="online">
                   <div class="media">
                     <a class="pull-left profile-photo" href="#">
@@ -578,7 +578,7 @@
 
                 <li class="busy">
                   <div class="media">
-                    
+
                     <a class="pull-left profile-photo" href="#">
                       <img class="media-object" src="assets/images/arnold-avatar.jpg" alt>
                     </a>
@@ -608,16 +608,16 @@
                 </li>
 
               </ul>
-                
+
             </div>
 
             <div class="tab-pane" id="mmenu-friends">
               <h5><strong>Friends</strong> List</h5>
                 <ul class="favourite-list">
-                
+
                 <li class="online">
                   <div class="media">
-                    
+
                     <a class="pull-left profile-photo" href="#">
                       <img class="media-object" src="assets/images/arnold-avatar.jpg" alt>
                     </a>
@@ -678,7 +678,7 @@
               <h5><strong>Chat</strong> Settings</h5>
 
               <ul class="settings">
-               
+
                 <li>
                   <div class="form-group">
                     <label class="col-xs-8 control-label">Show Offline Users</label>
@@ -770,9 +770,9 @@
                 </li>
 
               </ul>
-                
+
             </div><!-- tab-pane -->
-              
+
           </div><!-- tab-content -->
         </div>
 
@@ -831,11 +831,11 @@
       function restoreRow (oTable02, nRow){
         var aData = oTable02.fnGetData(nRow);
         var jqTds = $('>td', nRow);
-        
+
         for ( var i=0, iLen=jqTds.length ; i<iLen ; i++ ) {
           oTable02.fnUpdate( aData[i], nRow, i, false );
         }
-        
+
         oTable02.fnDraw();
       };
 
@@ -874,7 +874,7 @@
         "aoColumnDefs": [
           { 'bSortable': false, 'aTargets': [ "no-sort" ] }
         ],
-        "fnInitComplete": function(oSettings, json) { 
+        "fnInitComplete": function(oSettings, json) {
           $('.dataTables_filter input').attr("placeholder", "Search");
         }
       });
@@ -893,7 +893,7 @@
         if ( nEditing !== null ) {
           return;
         }
-        
+
         var aiNew = oTable02.fnAddData([ '', '', '', '', '', '<a class="edit" href="">Edit</a>', '<a class="delete" href="">Delete</a>' ]);
         var nRow = oTable02.fnGetNodes(aiNew[0]);
         editRow(oTable02, nRow);
@@ -905,7 +905,7 @@
       // Delete row initialize
       $(document).on( "click", "#inlineEditDataTable a.delete", function(e) {
         e.preventDefault();
-        
+
         var nRow = $(this).parents('tr')[0];
         oTable02.fnDeleteRow( nRow );
       });
@@ -913,10 +913,10 @@
       // Edit row initialize
       $(document).on( "click", "#inlineEditDataTable a.edit", function(e) {
         e.preventDefault();
-         
+
         /* Get the row as a parent of the link that was clicked on */
         var nRow = $(this).parents('tr')[0];
-         
+
         if (nEditing !== null && nEditing != nRow){
           /* A different row is being edited - the edit should be cancelled and this row edited */
           restoreRow(oTable02, nEditing);
@@ -937,9 +937,9 @@
 
       //initialize chosen
        $('.dataTables_length select').chosen({disable_search_threshold: 10});
-      
+
     })
-      
+
     </script>
   </body>
 </html>

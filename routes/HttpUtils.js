@@ -72,7 +72,6 @@ function getHeader(token,body) {
         "osVersion":"5.1.1",
         "netWorkStandard":"WIFI",
         "Connection":"close",
-        "Host":"api.shicaidai.com",
         "Accept-Encoding":"gzip",
         "User-Agent":"okhttp/2.4.0",
         "Content-Type":"application/x-www-form-urlencoded"

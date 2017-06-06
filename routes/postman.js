@@ -4,7 +4,7 @@ var router = express.Router();
 var HttpUtils = require('./HttpUtils.js');
 var Request = require('../models/request.js');
 var requestDao = require('../dao/requestDao');
-
+var config = require('config-lite');
 
 
 // GET /signin 登录页
@@ -98,7 +98,7 @@ router.post('/getToken', function(req, res, next) {
   var username = req.fields.username;
   var password = req.fields.password
   var param = "mobilePhone="+username+"&password="+password+"&timer=1488349673150";
-  HttpUtils.postForm('https://api.shicaidai.com/userService/login',"", param, function (result) {
+  HttpUtils.postForm(config.loginURL+'/user/login',"", param, function (result) {
         res.json(result);
   });
 });
@@ -126,12 +126,6 @@ router.post('/getResult', function(req, res, next) {
     'method': method,
     'body': body
   });
-
-  // requestDao.findOneAndRemove({'interfaceName':interfaceName},function(err,res){
-  //   console.log("res--------------------" + res);
-  //   console.log("开始插入");
-  //   requestDao.insert(request,function(err,res){console.log('插入结束')})
-  // });
 
   HttpUtils.postFormJson(URL,token4request,body,method,function (result) {
         res.json(result);
