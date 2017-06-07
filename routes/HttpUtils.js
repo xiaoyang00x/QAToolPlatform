@@ -11,36 +11,49 @@ var md5 = require('md5');
 
 
 HttpUtils.postForm = function (url,token,form, callback) {
-    var header = getHeader(token,form);
-    var option = {
-        headers : header,
-        body: form,
-        json: true,
-        gzip:true
-
-    };
-    return request.post(url,option, function (error, response, body) {
-        resultFunction(callback,error,response,body);
+    var p = new Promise(function (resolve, reject) {
+        var header = getHeader(token,form);
+        var option = {
+            headers : header,
+            body: form,
+            json: true,
+            gzip:true
+        };
+        request.post(url,option,function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                resolve(body);
+            } else {
+                reject(error)
+            }
+        });
     })
+    return p;
+
 };
 
 
 
 
-HttpUtils.postFormJson = function (url,token,form,method,callback) {
-    var header = getHeader(token,form);
-    let option = {
-        url: url,
-        method: method,
-        json: true,
-        headers: header,
-        body: form,
-        gzip:true
-    };
-
-    request(option,function (error, response, body) {
-            resultFunction(callback,error,response,body);
-    });
+HttpUtils.postFormJson = function (url,token,form,method) {
+    var p = new Promise(function (resolve, reject) {
+        var header = getHeader(token,form);
+        let option = {
+            url: url,
+            method: method,
+            json: true,
+            headers: header,
+            body: form,
+            gzip:true
+        };
+        request(option,function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                resolve(body);
+            } else {
+                reject(error)
+            }
+        });
+    })
+    return p;
 };
 
 
@@ -49,12 +62,12 @@ function resultFunction(callback,error, response, body){
     console.log("开始了");
     console.log("body-----" + body);
     if (!error && response.statusCode === 200) {
-        callback({success: true, msg: body});
+        return callback({success: true, msg: body});
         console.log('request is success ');
         
     } else {
         console.log('request is error', error);
-        callback({success: false, msg: error});
+        return callback({success: false, msg: error});
     }
     console.log("结束了");
 }

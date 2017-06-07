@@ -11,7 +11,6 @@ module.exports = {
     loginURL: 'https://testapi.miaoqian.com',
     redis: {
         "server": "10.0.1.230",
-        "port": "6379",
-        "auth": "qatool"
+        "port": "6379"
     }
 };

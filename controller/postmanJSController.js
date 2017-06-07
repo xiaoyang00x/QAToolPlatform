@@ -10,11 +10,11 @@ $(document).ready(function () {
                 data: $('#getTokenForm').serialize(),// 你的formid
                 async: false,
                 error: function (request) {
-                    alert("Ajax请求失败了");
+                    window.location.reload();
                 },
                 success: function (data) {
                     try {
-                        $("input[name='token4request']").attr("value", data.msg.data.token);
+                        $("input[name='token4request']").attr("value", data.data.token);
                     }
                     catch (err) {
                         $("input[name='token4request']").attr("value", "用户名或密码错误");
@@ -38,7 +38,7 @@ $(document).ready(function () {
                 data: $('#resultForm').serialize(),// 你的formid
                 async: false,
                 error: function (request) {
-                    alert("Connection error");
+                    window.location.reload();
                 },
                 success: function (data) {
                     $("textarea[name='response']").val(JSON.stringify(data));
@@ -71,7 +71,7 @@ $(document).ready(function () {
                             data: $('#resultForm').serialize(),// 你的formid
                             async: false,
                             error: function (request) {
-                                alert("Connection error");
+                                window.location.reload();
                             },
                             success: function (data) {
                                 window.location.reload();
@@ -106,7 +106,7 @@ $(document).ready(function () {
                             data: {'interfaceName': interfaceName},// 你的formid
                             async: false,
                             error: function (request) {
-                                alert("Connection error");
+                                window.location.reload();
                             },
                             success: function (data) {
                                 window.location.reload();

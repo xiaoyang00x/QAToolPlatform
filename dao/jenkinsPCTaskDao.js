@@ -52,7 +52,7 @@ module.exports = {
         var p = new Promise(function(resolve, reject){
           JenkinsPCTask.remove(wherestr, function(err, res){
               if (err) {
-                 reject(res);
+                 reject(err);
               }
               else {
                 resolve("删除成功");
