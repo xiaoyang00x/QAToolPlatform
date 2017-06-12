@@ -129,7 +129,7 @@ $(function () {
 
         var aiNew = oTable02.fnAddData(['', '', '', '', '', '', '', '<a class="edit" href="">Rerun</a>', '<a class="delete" href="">Delete</a>']);
         var nRow = oTable02.fnGetNodes(aiNew[0]);
-        editRow(oTable02, nRow);
+        cancelRow(oTable02, nRow);
         nEditing = nRow;
         $(nRow).find('td:last-child').addClass('actions text-center');
 
