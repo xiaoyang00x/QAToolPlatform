@@ -8,7 +8,7 @@
     <link href="assets/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/vendor/bootstrap-checkbox.css">
-
+    <script  type="text/javascript" src="config.js"></script>
     <link href="assets/css/minimal.css" rel="stylesheet">
 
   </head>
@@ -33,11 +33,10 @@
 
             <div class="controls">
               <button class="btn btn-cyan"  onclick="location.reload()" ><i class="fa fa-refresh"></i>再试一次</button>
-              <button class="btn btn-greensea" onclick="window.location.href='http://10.0.1.167:3000'"><i class="fa fa-home"></i>返回首页</button>
+              <button class="btn btn-greensea" onclick="window.location.href='http://'+window.serverIP+':3000'"><i class="fa fa-home"></i>返回首页</button>
             </div>
 
           </div>
-
 
         </div>
         <!-- /Page content -->  

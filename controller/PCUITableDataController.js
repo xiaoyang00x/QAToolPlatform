@@ -75,7 +75,7 @@ $(function () {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://10.0.1.167:3000/jenkins4pcui",
+            url: "http://" + window.serverIP + ":3000/jenkins4pcui",
             data: {
                 'TestName': TestName,
                 "Broswertype": Broswertype,
@@ -146,7 +146,7 @@ $(function () {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://10.0.1.167:3000/jenkins4pcui/deletePCUITask",
+            url: "http://" + window.serverIP + ":3000/jenkins4pcui/deletePCUITask",
             data: {"AssociationID": AssociationID},
             async: false,
             error: function (request) {
@@ -216,7 +216,7 @@ $(function () {
         $.ajax({
             cache: true,
             type: "GET",
-            url: "http://10.0.1.167:3000/jenkins4pcui/getAllPCUITask",
+            url: "http://" + window.serverIP + ":3000/jenkins4pcui/getAllPCUITask",
             async: false,
             error: function (request) {
                 alert("Connection error");
