@@ -49,6 +49,24 @@ $(function () {
         [11, 1260],
         [12, 1320]
     ];
+
+    var d4 = [
+        [1, 100],
+        [2, 200],
+        [3, 300],
+        [4, 400],
+        [5, 500],
+        [6, 600],
+        [7, 700],
+        [8, 800],
+        [9, 900],
+        [10, 1000],
+        [11, 1100],
+        [12, 1200]
+    ];
+
+
+
     var months = ["January", "February", "March", "April", "May", "Juny", "July", "August", "September", "October", "November", "December"];
 
     // flot chart generate
@@ -75,6 +93,15 @@ $(function () {
                 shadowSize: 0,
                 color: '#16a085'
             },
+
+            {
+                label: "Dubbo自动化",
+                data: d4,
+                lines: {lineWidth: 3},
+                shadowSize: 0,
+                color: '#ffc100'
+            },
+
             {
                 label: 'PCUI自动化',
                 data: d1,
@@ -94,6 +121,13 @@ $(function () {
                 data: d3,
                 points: {show: true, fill: true, radius: 6, fillColor: "rgba(0,0,0,.5)", lineWidth: 2},
                 color: '#16a085',
+                shadowSize: 0
+            },
+            {
+                label: 'dubbo自动化',
+                data: d4,
+                points: {show: true, fill: true, radius: 6, fillColor: "rgba(0,0,0,.5)", lineWidth: 2},
+                color: '#ffc100',
                 shadowSize: 0
             }
         ], {
@@ -244,9 +278,11 @@ $(function () {
         data: [
             {label: "PCUI自动化", value: 35},
             {label: "AppUI自动化", value: 35},
-            {label: "接口自动化", value: 30},
+            {label: "接口自动化", value: 10},
+            {label: "Dubbo自动化", value: 20},
+
         ],
-        colors: ['#d9544f', '#3f4e62', '#16a085']
+        colors: ['#d9544f', '#3f4e62', '#16a085','#ffc100']
     });
 
     $('#browser-usage').find("path[stroke='#ffffff']").attr('stroke', 'rgba(0,0,0,0)');
