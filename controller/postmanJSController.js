@@ -41,7 +41,13 @@ $(document).ready(function () {
                     window.location.reload();
                 },
                 success: function (data) {
-                    $("textarea[name='response']").val(JSON.stringify(data));
+                    if(data=="300"){
+                        alert("接口地址不存在或者请求体格式错误！！！！")
+                        $("textarea[name='response']").val("接口地址不存在或者请求体格式错误！！！！");
+
+                    }else{
+                        $("textarea[name='response']").val(JSON.stringify(data));
+                    }
                 }
             })
         }

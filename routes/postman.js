@@ -113,6 +113,7 @@ router.post('/getToken', function (req, res, next) {
     var username = req.fields.username;
     var password = req.fields.password
     var param = "mobilePhone=" + username + "&password=" + password + "&timer=1488349673150";
+    console.log("---------------"+param);
     HttpUtils.postForm(config.loginURL + '/user/login', "", param)
         .then(function (result) {
             console.log(JSON.stringify(result));
@@ -144,12 +145,12 @@ router.post('/getResult', function (req, res, next) {
         'method': method,
         'body': body
     });
-
+    console.log("/getResult-------:"+request)
     HttpUtils.postFormJson(URL, token4request, body, method).then(function (result) {
-        console.log(JSON.stringify(result));
+        console.log(JSON.stringify("!!!!!!!!!"+result));
         res.send(result);
     }).catch(function (reason) {
-        console.log(reason);
+        res.send("300");
     })
 });
 
