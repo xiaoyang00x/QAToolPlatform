@@ -116,10 +116,31 @@ module.exports = {
     }
 }
 
+
+
+
+var schedule = require("node-schedule");
+var UserModel = require('../models/user');
+var UserDao = require('../dao/userDao');
+var rule = new schedule.RecurrenceRule();
+rule.minute = 19;
+var j = schedule.scheduleJob(rule, function(){
+    UserDao.getByConditions("",function(err,res){
+        if (err) {
+            callback(err,null);
+        }
+        else {
+            console.log("心跳查询")
+        }
+    });
+});
+
+
+
+
+
 // var UserModel = require('../models/user');
 // var UserDao = require('../dao/userDao');
-
-
 // var user = new UserModel({
 //   'name': 'fdsfds',
 //   'password': sha1('fdsfds')

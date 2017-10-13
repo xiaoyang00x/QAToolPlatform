@@ -95,7 +95,7 @@ $(function () {
             },
 
             {
-                label: "Dubbo自动化",
+                label: "Rpc自动化",
                 data: d4,
                 lines: {lineWidth: 3},
                 shadowSize: 0,
@@ -124,7 +124,7 @@ $(function () {
                 shadowSize: 0
             },
             {
-                label: 'dubbo自动化',
+                label: 'Rpc自动化',
                 data: d4,
                 points: {show: true, fill: true, radius: 6, fillColor: "rgba(0,0,0,.5)", lineWidth: 2},
                 color: '#ffc100',
@@ -279,7 +279,7 @@ $(function () {
             {label: "PCUI自动化", value: 35},
             {label: "AppUI自动化", value: 35},
             {label: "接口自动化", value: 10},
-            {label: "Dubbo自动化", value: 20},
+            {label: "Rpc自动化", value: 20},
 
         ],
         colors: ['#d9544f', '#3f4e62', '#16a085','#ffc100']
