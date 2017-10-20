@@ -1,8 +1,8 @@
 var jenkinsapi = require('jenkins-api');
 var express = require('express');
 var router = express.Router();
-var JenkinsPCTask = require('../models/jenkinsPCTask.js');
-var jenkinsPCTaskDao = require('../dao/jenkinsPCTaskDao');
+var JenkinsTask = require('../models/jenkinsTask.js');
+var jenkinsTaskDao = require('../dao/jenkinsTaskDao');
 
 //var Autotest = require('../models/autotest')
 var autotaskDao = require('../dao/autotaskDao');
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/getAllPCUITask', function(req, res, next) {
-    jenkinsPCTaskDao.findAllPcTask(function(err,result){
+    jenkinsTaskDao.findAllPcTask(function(err,result){
         res.json(result);
     });
 });
@@ -28,9 +28,9 @@ router.get('/getAllPCUITask', function(req, res, next) {
 router.post('/deletePCUITask', function(req, res, next) {
     var AssociationID = req.fields.AssociationID;
     console.log("进来了----------AssociationID" + AssociationID);
-    jenkinsPCTaskDao.del({"associationID":AssociationID})
+    jenkinsTaskDao.del({"associationID":AssociationID})
     .then(function(data){
-        console.log("AssociationID jenkinsPCTask 删除成功");
+        console.log("AssociationID JenkinsTask 删除成功");
         return autotaskDao.del({"associationID":AssociationID})
     })
     .then(function(data){
@@ -57,15 +57,17 @@ router.post('/', function(req, res, next) {
     var AssociationID = req.fields.AssociationID;
     var Status = req.fields.Status;
     var Time = req.fields.Time;
+    var queryCountTime = new Date();
 
-    var jenkinsPCTask = new JenkinsPCTask({
+    var JenkinsTask = new JenkinsTask({
     	'testname':TestName,
     	'broswertype':Broswertype,
     	'status':Status,
     	'associationID':AssociationID,
     	'createtime':Time,
-        'pass':'',//默认是0
-        'fail':'',//默认是0
+        'pass':0,//默认是0
+        'fail':0,//默认是0
+        'queryCountTime': queryCountTime
     });
   
 	jenkins.build('H5AutomationTest4system', {deviceType: 'pc',testName:TestName,isVideo:'false',broswerType:Broswertype,isLocalVideo:'false',associationID:AssociationID}, function(err, data) {
@@ -73,7 +75,7 @@ router.post('/', function(req, res, next) {
 	  	return console.log(err); 
 	  }else{
 	  	  console.log("请求成功:------------------- " + data);
-	  	  jenkinsPCTaskDao.insert(jenkinsPCTask,function(err, result){
+          jenkinsTaskDao.insert(JenkinsTask,function(err, result){
 				res.json(data);	  	  	
 	  	  });
 	   }

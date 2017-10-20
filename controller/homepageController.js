@@ -8,63 +8,33 @@ $(function () {
     });
 
     // Initialize flot chart
-    var d1 = [[1, 715],
-        [2, 985],
-        [3, 1525],
-        [4, 1254],
-        [5, 1861],
-        [6, 2621],
-        [7, 1987],
-        [8, 2136],
-        [9, 2364],
-        [10, 2851],
-        [11, 1546],
-        [12, 2541]
-    ];
 
 
-    var d3 = [[1, 900],
-        [2, 1385],
-        [3, 1525],
-        [4, 1861],
-        [5, 2621],
-        [6, 1987],
-        [7, 2136],
-        [8, 2364],
-        [9, 2851],
-        [10, 1546],
-        [11, 2541],
-        [12, 2121]
-    ];
-    var d2 = [[1, 463],
-        [2, 578],
-        [3, 327],
-        [4, 984],
-        [5, 1268],
-        [6, 1684],
-        [7, 1425],
-        [8, 1233],
-        [9, 1354],
-        [10, 1200],
-        [11, 1260],
-        [12, 1320]
-    ];
+    var d1 = new Array;
+    var d2 = new Array;
+    var d3 = new Array;
+    var d4 = new Array;
 
-    var d4 = [
-        [1, 100],
-        [2, 200],
-        [3, 300],
-        [4, 400],
-        [5, 500],
-        [6, 600],
-        [7, 700],
-        [8, 800],
-        [9, 900],
-        [10, 1000],
-        [11, 1100],
-        [12, 1200]
-    ];
+    function initLineChart() {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "http://" + window.serverIP + ":3000/home/getLineChart",
+            async: false,
+            error: function (request) {
+                alert("Connection error");
+            },
+            success: function (data) {
+                d1 = data;
+            }
+        })
+    }
 
+
+    initLineChart(d1);
+    // initLineChart(d2);
+    // initLineChart(d3);
+    // initLineChart(d4);
 
 
     var months = ["January", "February", "March", "April", "May", "Juny", "July", "August", "September", "October", "November", "December"];
@@ -282,10 +252,9 @@ $(function () {
             {label: "Rpc自动化", value: 20},
 
         ],
-        colors: ['#d9544f', '#3f4e62', '#16a085','#ffc100']
+        colors: ['#d9544f', '#3f4e62', '#16a085', '#ffc100']
     });
 
     $('#browser-usage').find("path[stroke='#ffffff']").attr('stroke', 'rgba(0,0,0,0)');
-
 
 });
