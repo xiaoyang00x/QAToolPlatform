@@ -8,36 +8,164 @@ $(function () {
     });
 
     // Initialize flot chart
-
-
     var d1 = new Array;
     var d2 = new Array;
     var d3 = new Array;
     var d4 = new Array;
 
-    function initLineChart() {
+    var pcCount = 0;
+    var appCount = 0;
+    var httpCount = 0;
+    var rpcCount = 0;
+    var totleCount = 0;
+    var totlePassCount = 0;
+
+    function initLineChart(array, type) {
         $.ajax({
             cache: true,
             type: "POST",
             url: "http://" + window.serverIP + ":3000/home/getLineChart",
+            data: {"deviceType": type},
             async: false,
             error: function (request) {
                 alert("Connection error");
             },
             success: function (data) {
-                d1 = data;
+                for (var i = 0; i < data.length; i++) {
+                    array[i] = data[i];
+                }
             }
         })
     }
 
 
-    initLineChart(d1);
-    // initLineChart(d2);
-    // initLineChart(d3);
-    // initLineChart(d4);
+    function initTestCaseCount() {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "http://" + window.serverIP + ":3000/home/initTestCaseCount",
+            async: false,
+            error: function (request) {
+                alert("Connection error");
+            },
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]["_id"] == "rpc")
+                        rpcCount = data[i]["num_tutorial"];
+                    else if (data[i]["_id"] == "app")
+                        appCount = data[i]["num_tutorial"];
+                    else if (data[i]["_id"] == "pc")
+                        pcCount = data[i]["num_tutorial"];
+                    else
+                        httpCount = data[i]["num_tutorial"];
+                }
+                totleCount = pcCount + appCount + httpCount + rpcCount;
+            }
+        })
+    }
+
+
+    function initPassTestCaseCount() {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "http://" + window.serverIP + ":3000/home/initTestCasePassCount",
+            async: false,
+            error: function (request) {
+                alert("Connection error");
+            },
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    totlePassCount = totlePassCount + data[i]["num_tutorial"];
+                }
+                console.log(totlePassCount);
+                console.log(totleCount);
+
+            }
+        })
+    }
+
+
+    initTestCaseCount();
+    initPassTestCaseCount();
+    initLineChart(d1, "pc");
+    initLineChart(d2, "app");
+    initLineChart(d3, "http");
+    initLineChart(d4, "rpc");
+
+
+    if (d1.length == 0) {
+        var d1 = [
+            [1, 1],
+            [2, 1],
+            [3, 1],
+            [4, 1],
+            [5, 1],
+            [6, 1],
+            [7, 1],
+            [8, 1],
+            [9, 1],
+            [10, 1],
+            [11, 1],
+            [12, 1]
+        ]
+    }
+
+    if (d2.length == 0) {
+        d2 = [
+            [1, 2],
+            [2, 2],
+            [3, 2],
+            [4, 2],
+            [5, 2],
+            [6, 2],
+            [7, 2],
+            [8, 2],
+            [9, 2],
+            [10, 2],
+            [11, 2],
+            [12, 2]
+        ]
+    }
+
+
+    if (d3.length == 0) {
+        d3 = [
+            [1, 3],
+            [2, 3],
+            [3, 3],
+            [4, 3],
+            [5, 3],
+            [6, 3],
+            [7, 3],
+            [8, 3],
+            [9, 3],
+            [10, 3],
+            [11, 3],
+            [12, 3]
+        ];
+    }
+
+    if (d4.length == 0) {
+        d4 = [
+            [1, 4],
+            [2, 4],
+            [3, 4],
+            [4, 4],
+            [5, 4],
+            [6, 4],
+            [7, 4],
+            [8, 4],
+            [9, 4],
+            [10, 5],
+            [11, 4],
+            [12, 4]
+        ];
+    }
 
 
     var months = ["January", "February", "March", "April", "May", "Juny", "July", "August", "September", "October", "November", "December"];
+
 
     // flot chart generate
     var plot = $.plotAnimator($("#statistics-chart"),
@@ -200,6 +328,7 @@ $(function () {
         "z-index": "99999"
     }).appendTo("body");
 
+
     //generate actual pie charts
     $('.pie-chart').easyPieChart();
 
@@ -246,15 +375,26 @@ $(function () {
     Morris.Donut({
         element: 'browser-usage',
         data: [
-            {label: "PCUI自动化", value: 35},
-            {label: "AppUI自动化", value: 35},
-            {label: "接口自动化", value: 10},
-            {label: "Rpc自动化", value: 20},
+            {label: "PCUI自动化", value: Math.round((pcCount / totleCount) * 100)},
+            {label: "AppUI自动化", value: Math.round((appCount / totleCount) * 100)},
+            {label: "接口自动化", value: Math.round((httpCount / totleCount) * 100)},
+            {
+                label: "Rpc自动化",
+                value: 100 - Math.round((pcCount / totleCount) * 100) - Math.round((appCount / totleCount) * 100) - Math.round((httpCount / totleCount) * 100)
+            },
 
         ],
         colors: ['#d9544f', '#3f4e62', '#16a085', '#ffc100']
     });
 
     $('#browser-usage').find("path[stroke='#ffffff']").attr('stroke', 'rgba(0,0,0,0)');
+
+    $("#pcpie").html(Math.round((pcCount / totleCount) * 100) + "%");
+    $("#apppie").html(Math.round((appCount / totleCount) * 100) + "%");
+    $("#httppie").html(Math.round((httpCount / totleCount) * 100) + "%");
+    $("#rpcpie").html(100 - Math.round((pcCount / totleCount) * 100) - Math.round((appCount / totleCount) * 100) - Math.round((httpCount / totleCount) * 100) + "%");
+    $("#totalPassTestCaseCount").html(totlePassCount);
+    $("#totalTestCaseCount").html(totleCount);
+
 
 });

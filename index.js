@@ -42,8 +42,6 @@ app.use(session({
 app.use(flash());
 
 
-
-
 // 处理表单及文件上传的中间件
 app.use(require('express-formidable')({
   //uploadDir: path.join(__dirname, 'public/img'),// 上传文件目录
@@ -70,32 +68,7 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-// // 正常请求的日志
-// app.use(expressWinston.logger({
-//   transports: [
-//     new (winston.transports.Console)({
-//       json: true,
-//       colorize: true
-//     }),
-//     new winston.transports.File({
-//       filename: 'logs/success.log'
-//     })
-//   ]
-// }));
-// 路由
 routes(app);
-// // 错误请求的日志
-// app.use(expressWinston.errorLogger({
-//   transports: [
-//     new winston.transports.Console({
-//       json: true,
-//       colorize: true
-//     }),
-//     new winston.transports.File({
-//       filename: 'logs/error.log'
-//     })
-//   ]
-// }));<%=test%>
 
 // error page
 app.use(function (err, req, res, next) {
@@ -113,3 +86,37 @@ app.listen(config.port, function () {
 
 new watchZip();
 new saveData();
+
+
+
+
+
+
+
+
+
+// // 正常请求的日志
+// app.use(expressWinston.logger({
+//   transports: [
+//     new (winston.transports.Console)({
+//       json: true,
+//       colorize: true
+//     }),
+//     new winston.transports.File({
+//       filename: 'logs/success.log'
+//     })
+//   ]
+// }));
+// 路由
+// // 错误请求的日志
+// app.use(expressWinston.errorLogger({
+//   transports: [
+//     new winston.transports.Console({
+//       json: true,
+//       colorize: true
+//     }),
+//     new winston.transports.File({
+//       filename: 'logs/error.log'
+//     })
+//   ]
+// }));<%=test%>

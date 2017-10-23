@@ -60,6 +60,7 @@ $(function () {
         var Broswertype = $(nRow).find('td')[1].innerHTML;
         var AssociationID = Date.parse(new Date());
         var Status = 'Running';
+        var DeviceType = 'pc';
         var Time = getNowFormatDate();
         console.log(TestName);
         console.log(Broswertype);
@@ -88,7 +89,8 @@ $(function () {
                 alert("Connection error");
             },
             success: function (data) {
-                window.location.reload();
+                console.log(data);
+                // window.location.reload();
             }
         })
         oTable02.fnDraw();

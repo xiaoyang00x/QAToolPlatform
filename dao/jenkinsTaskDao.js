@@ -66,13 +66,12 @@ module.exports = {
      * 获取本年折线图的数据
      * thisYear:当年第一天
      */
-    getLineChart: function getLineChart(thisYear) {
-        console.log("今年的参数是" + thisYear);
+    getLineChart: function getLineChart(thisYear, deviceType) {
         var p = new Promise(function (resolve, reject) {
             var arr = new Array()
             JenkinsTask.aggregate(
                 {
-                    $match: {queryCountTime: {$gte: new Date(thisYear), $lte: new Date()}}
+                    $match: {queryCountTime: {$gte: new Date(thisYear)}, deviceType: deviceType}
                 },
                 {
                     $group: {
@@ -85,9 +84,9 @@ module.exports = {
                 if (err) {
                     reject(err)
                 } else {
-                    for(var i=0;i<res.length;i++){
+                    for (var i = 0; i < res.length; i++) {
                         arr[i] = new Array();
-                        arr[i] = [res[i]._id,res[i].num_tutorial]
+                        arr[i] = [res[i]._id, res[i].num_tutorial]
                     }
                     resolve(arr);
                 }
@@ -97,14 +96,56 @@ module.exports = {
     },
 
 
+    initTestCaseCount: function initTestCaseCount(casetype) {
+        var p = new Promise(function (resolve, reject) {
+            JenkinsTask.aggregate(
+                {
+                    $group: {
+                        _id: "$deviceType",
+                        num_tutorial: {$sum: {$add: ["$pass", "$fail"]}}
+                    }
+                }
+            ).exec(function (err, res) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(res);
+                }
+            })
+        })
+        return p;
+
+    },
+
+
+    initTestCasePassCount: function initTestCasePassCount() {
+        var p = new Promise(function (resolve, reject) {
+            JenkinsTask.aggregate(
+                {
+                    $group: {
+                        _id: "$deviceType",
+                        num_tutorial: {$sum: "$pass"}
+                    }
+                }
+            ).exec(function (err, res) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(res);
+                }
+            })
+        })
+        return p;
+    },
+
+
     findAllPcTask: function find(callback) {
-        JenkinsTask.find({}).sort({'_id': -1}).exec(function (err, res) {
+        JenkinsTask.find({}).sort({'queryCountTime': -1}).exec(function (err, res) {
             if (err) {
                 console.log("Error:" + err);
                 callback(err, null);
             }
             else {
-                console.log("Res:" + res);
                 console.log("查询成功");
                 callback(null, res);
             }
