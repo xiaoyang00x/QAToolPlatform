@@ -5,7 +5,7 @@ var router = express.Router();
 
 // GET /signout 登出
 router.get('/', function(req, res, next) {
-  if(req.session.user!=null){
+  if(req.session.user){
   	  // 清空 session 中用户信息
 	  req.session.user = null;
       var target  = req.session.id;

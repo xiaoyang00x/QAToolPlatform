@@ -6,7 +6,7 @@ var router = express.Router();
 // GET /pcui 页面
 router.get('/', function(req, res, next) {
     //res.send(req.flash());
-     if(req.session.user!=null)
+     if(req.session.user)
     	res.render('pcui');
      else
       	res.redirect('/signin');

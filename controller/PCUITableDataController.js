@@ -50,8 +50,9 @@ $(function () {
 
     function saveRow(oTable02, nRow) {
         var jqInputs = $('input', nRow);
+        var jqSelect = $('select', nRow);
         oTable02.fnUpdate(jqInputs[0].value, nRow, 0, false);
-        oTable02.fnUpdate(jqInputs[1].value, nRow, 1, false);
+        oTable02.fnUpdate(jqSelect[0].value, nRow, 1, false);
         //oTable02.fnUpdate( '<a class="edit" href="#">Rerun</a><a class="delete" href="#">Delete</a>', nRow, 7, false );
 
         console.log($(nRow).find('td')[1].innerHTML);
@@ -209,7 +210,13 @@ $(function () {
         var aData = oTable02.fnGetData(nRow);
         var jqTds = $('>td', nRow);
         jqTds[0].innerHTML = '<input type="text" value="' + aData[0] + '">';
-        jqTds[1].innerHTML = '<input type="text" value="' + aData[1] + '">';
+        jqTds[1].innerHTML =
+            '<select class="chosen-select chosen-transparent form-control" id="input07">'+
+                '<option>firefox</option>'+
+                '<option>chrome</option>'+
+                '<option>ie</option>'+
+                '<option>safari</option>'+
+            '</select>';
         jqTds[7].innerHTML = '<a class="edit save" href="#">Run</a><a class="cancel" href="#">cancel</a>';
     };
 

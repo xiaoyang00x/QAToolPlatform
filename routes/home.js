@@ -7,8 +7,7 @@ var jenkinsTaskDao = require("../dao/jenkinsTaskDao");
 // GET /signin 登录页
 router.get('/', function (req, res, next) {
 
-    if (req.session.user !== null) {
-        console.log("进来!=null了")
+    if (req.session.user) {
         let accessAmountAll = 0;
         accessAmountDao.getAccessAmount("accessAmount").then(function (data) {
             accessAmountAll = data;
@@ -20,7 +19,6 @@ router.get('/', function (req, res, next) {
         });
 
     } else {
-        console.log("进来==null了");
         res.redirect('/signin');
 
     }

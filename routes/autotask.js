@@ -7,7 +7,7 @@ var autotaskDao = require('../dao/autotaskDao');
 // GET /pcui 页面
 router.get('/', function(req, res, next) {
     //res.send(req.flash());
-     if(req.session.user!=null)
+     if(req.session.user)
     	res.render('autotask');
      else
       	res.redirect('/signin');

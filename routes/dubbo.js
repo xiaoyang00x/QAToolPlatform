@@ -6,7 +6,7 @@ var router = express.Router();
 // GET /dubbo 页面
 router.get('/', function(req, res, next) {
     //res.send(req.flash());
-    if(req.session.user!=null)
+    if(req.session.user)
         res.render('dubbo');
     else
         res.redirect('/signin');
