@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="assets/js/vendor/datatables/css/TableTools.css">
     <link href="assets/css/minimal.css" rel="stylesheet">
     <script type="text/javascript" src="controllerConfig.js"></script>
+    <script type="text/javascript" src="headerController.js"></script>
 </head>
 
 <body class="bg-1">
@@ -96,6 +97,12 @@
                                 <a href="#"><i class="fa fa-user"></i>设置</a>
                             </li>
 
+                            <% if(user.name == 'fdsfds') { %>
+                            <li>
+                                <a href="/signup"><i class="fa fa-plus"></i>注册</a>
+                            </li>
+
+                            <% } %>
                             <li class="divider"></li>
 
                             <li>
@@ -163,34 +170,10 @@
 
 
                             <li>
-                                <a href="/postman">
-                                    <i class="fa fa-users"></i><strong>App二维码</strong>
+                                <a href="#">
+                                    <i class="fa fa-users"></i><strong>预留区域</strong>
                                 </a>
                             </li>
-
-                            <!--<li class="dropdown">-->
-                            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-                            <!--<i class="fa fa-pencil"></i> Interface <b class="fa fa-plus dropdown-plus"></b>-->
-                            <!--</a>-->
-                            <!--<ul class="dropdown-menu">-->
-                            <!--<li>-->
-                            <!--<a href="ui-elements.html">-->
-                            <!--<i class="fa fa-caret-right"></i> UI Elements-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                            <!--<a href="typography.html">-->
-                            <!--<i class="fa fa-caret-right"></i> Typography-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                            <!--<a href="tiles.html">-->
-                            <!--<i class="fa fa-caret-right"></i> Tiles-->
-                            <!--</a>-->
-                            <!--</li>-->
-                            <!--</ul>-->
-                            <!--</li>-->
-
 
                         </ul>
 
@@ -205,7 +188,7 @@
                                 <span id="sales-chart"></span>
                             </a>
                             <div class="media-body">
-                                <strong>自动化case执行通过数</strong>
+                                <strong>自动化脚本执行通过数</strong>
                                 <h3 id="totalPassTestCaseCount" class="media-heading">26149</h3>
                             </div>
                         </div>
@@ -222,7 +205,7 @@
                                 <span id="balance-chart"></span>
                             </a>
                             <div class="media-body">
-                                <strong>自动化case执行总数</strong>
+                                <strong>自动化脚本执行总数</strong>
                                 <h3 id="totalTestCaseCount" class="media-heading">31865</h3>
                             </div>
                         </div>
@@ -232,35 +215,7 @@
                     <li class="settings" id="general-settings">
                         <a href="#" class="sidebar-toggle underline" data-toggle="#general-settings">未完待续 <i
                                     class="fa fa-angle-up"></i></a>
-                        <!--
-                                        <div class="form-group">
-                                          <label class="col-xs-8 control-label">Switch ON</label>
-                                          <div class="col-xs-4 control-label">
-                                            <div class="onoffswitch greensea">
-                                              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch-on" checked="">
-                                              <label class="onoffswitch-label" for="switch-on">
-                                                <span class="onoffswitch-inner"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                              </label>
-                                            </div>
-                                          </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                          <label class="col-xs-8 control-label">Switch OFF</label>
-                                          <div class="col-xs-4 control-label">
-                                            <div class="onoffswitch greensea">
-                                              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch-off">
-                                              <label class="onoffswitch-label" for="switch-off">
-                                                <span class="onoffswitch-inner"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                              </label>
-                                            </div>
-                                          </div>
-                                        </div> -->
-
                     </li>
-
 
                 </ul>
                 <!-- Sidebar end -->

@@ -18,7 +18,10 @@ $(function () {
     var httpCount = 0;
     var rpcCount = 0;
     var totleCount = 0;
-    var totlePassCount = 0;
+    var passPcCount = 0;
+    var passAppCount = 0;
+    var passHttpCount = 0;
+    var passRpcCount = 0;
 
     function initLineChart(array, type) {
         $.ajax({
@@ -65,29 +68,33 @@ $(function () {
     }
 
 
-    function initPassTestCaseCount() {
+    function getPassTestCaseCount() {
         $.ajax({
             cache: true,
             type: "POST",
-            url: "http://" + window.serverIP + ":3000/home/initTestCasePassCount",
+            url: "http://" + window.serverIP + ":3000/home/getPassTestCaseCount",
             async: false,
             error: function (request) {
                 alert("Connection error");
             },
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    totlePassCount = totlePassCount + data[i]["num_tutorial"];
+                    if (data[i]["_id"] == "rpc")
+                        passRpcCount = data[i]["passnum_tutorial"];
+                    else if (data[i]["_id"] == "app")
+                        passAppCount = data[i]["passnum_tutorial"];
+                    else if (data[i]["_id"] == "pc")
+                        passPcCount = data[i]["passnum_tutorial"];
+                    else
+                        passHttpCount = data[i]["passnum_tutorial"];
                 }
-                console.log(totlePassCount);
-                console.log(totleCount);
-
             }
         })
     }
 
 
     initTestCaseCount();
-    initPassTestCaseCount();
+    getPassTestCaseCount();
     initLineChart(d1, "pc");
     initLineChart(d2, "app");
     initLineChart(d3, "http");
@@ -388,13 +395,38 @@ $(function () {
     });
 
     $('#browser-usage').find("path[stroke='#ffffff']").attr('stroke', 'rgba(0,0,0,0)');
-
     $("#pcpie").html(Math.round((pcCount / totleCount) * 100) + "%");
     $("#apppie").html(Math.round((appCount / totleCount) * 100) + "%");
     $("#httppie").html(Math.round((httpCount / totleCount) * 100) + "%");
     $("#rpcpie").html(100 - Math.round((pcCount / totleCount) * 100) - Math.round((appCount / totleCount) * 100) - Math.round((httpCount / totleCount) * 100) + "%");
-    $("#totalPassTestCaseCount").html(totlePassCount);
     $("#totalTestCaseCount").html(totleCount);
+
+    $("#pcuiSumCount").html("共" + pcCount + "条");
+    $("#appuiSumCount").html("共" + appCount + "条");
+    $("#httpSumCount").html("共" + httpCount + "条");
+    $("#rpcSumCount").html("共" + rpcCount + "条");
+
+
+    $("#pcuiPassCount").html("通过" + passPcCount + "条");
+    $("#appuiPassCount").html("通过" + passAppCount + "条");
+    $("#httpPassCount").html("通过" + passHttpCount + "条");
+    $("#rpcPassCount").html("通过" + passRpcCount + "条");
+
+
+    $("#pcuiPassRate").html(Math.round((passPcCount / pcCount).toFixed(2) * 100*100)/100);
+    $("#appuiPassRate").html(Math.round((passAppCount / appCount).toFixed(2) * 100*100)/100);
+    $("#httpPassRate").html(Math.round((passHttpCount / httpCount).toFixed(2) * 100*100)/100);
+    $("#rpcPassRate").html(Math.round((passRpcCount / rpcCount).toFixed(2) * 100*100)/100);
+
+
+    setTimeout(function(){
+        $("#pcuiPassRateProcess").css("width",Math.round((passPcCount / pcCount).toFixed(2) * 100*100)/100 + "%");
+        $("#appuiPassRateProcess").css("width",Math.round((passAppCount / appCount).toFixed(2) * 100*100)/100 + "%");
+        $("#httpPassRateProcess").css("width",Math.round((passHttpCount / httpCount).toFixed(2) * 100*100)/100 + "%");
+        $("#rpcPassRateProcess").css("width",Math.round((passRpcCount / rpcCount).toFixed(2) * 100*100)/100 + "%");
+
+    },100);
+
 
 
 });

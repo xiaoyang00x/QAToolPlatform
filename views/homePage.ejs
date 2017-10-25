@@ -1,398 +1,388 @@
 <% include header.ejs %>
 
-              <!-- Page content -->
-        <div id="content" class="col-md-12">
+<!-- Page content -->
+<div id="content" class="col-md-12">
 
-          <!-- page header -->
-          <div class="pageheader">
-
-
-            <h2><i class="fa fa-tachometer"></i>美团点评测试平台
-            <span>这是一个集合了自动化、测试工具的综合平台</span></h2>
+    <!-- page header -->
+    <div class="pageheader">
 
 
-          </div>
-          <!-- /page header -->
-
-          <!-- content main container -->
-          <div class="main">
+        <h2><i class="fa fa-tachometer"></i>美团点评测试平台
+            <span>这是一个集合了自动化、测试工具、统计的综合平台</span></h2>
 
 
+    </div>
+    <!-- /page header -->
 
-            <!-- cards -->
-            <div class="row cards">
+    <!-- content main container -->
+    <div class="main">
 
-              <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+
+        <!-- cards -->
+        <div class="row cards">
+
+            <div class="card-container col-lg-3 col-sm-6 col-sm-12">
                 <div class="card card-redbrown hover">
-                  <div class="front">
+                    <div class="front">
 
-                    <div class="media">
+                        <div class="media">
                       <span class="pull-left">
                         <i class="fa fa-desktop media-object"></i>
                       </span>
 
-                      <div class="media-body">
-                        <p> PCUI自动化 </p>
-                        <h2 class="media-heading animate-number" data-value="共3000条" data-animation-duration="1500">0</h2>
-                      </div>
-                    </div>
+                            <div class="media-body">
+                                <p> PCUI自动化 </p>
+                                <h2 class="media-heading animate-number" id="pcuiSumCount"
+                                    data-animation-duration="1500">0</h2>
+                            </div>
+                        </div>
 
-                    <div class="progress-list">
-                      <div class="details">
-                        <div class="title"><strong>通过2800条</strong></div>
-                      </div>
-                      <div class="status pull-right bg-transparent-black-1">
-                        <span class="animate-number" data-value="95" data-animation-duration="1500">0</span>%
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="progress progress-little progress-transparent-black">
-                        <div class="progress-bar animate-progress-bar" data-percentage="83%"></div>
-                      </div>
-                    </div>
+                        <div class="progress-list">
+                            <div class="details">
+                                <div class="title"><strong id="pcuiPassCount">通过0条</strong></div>
+                            </div>
+                            <div class="status pull-right bg-transparent-black-1">
+                                <span class="animate-number" id="pcuiPassRate" data-animation-duration="1500">0</span>%
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="progress progress-little progress-transparent-black">
+                                <div id="pcuiPassRateProcess" class="progress-bar animate-progress-bar"></div>
+                            </div>
+                        </div>
 
-                  </div>
-                  <div class="back">
-                    <a href="/pcui">
-                      <i class="fa fa-bar-chart-o fa-4x"></i>
-                      <span>点击跳转列表</span>
-                    </a>
-                  </div>
+                    </div>
+                    <div class="back">
+                        <a href="/pcui">
+                            <i class="fa fa-bar-chart-o fa-4x"></i>
+                            <span>点击跳转列表</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
+            </div>
 
 
-              <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+            <div class="card-container col-lg-3 col-sm-6 col-sm-12">
                 <div class="card card-slategray hover">
-                  <div class="front">
+                    <div class="front">
 
-                    <div class="media">
+                        <div class="media">
                       <span class="pull-left">
                         <i class="fa fa-phone media-object"></i>
                       </span>
 
-                      <div class="media-body">
-                        <p>AppUI自动化</p>
-                        <h2 class="media-heading animate-number" data-value="共3000条" data-animation-duration="1500">0</h2>
-                      </div>
-                    </div>
+                            <div class="media-body">
+                                <p>AppUI自动化</p>
+                                <h2 class="media-heading animate-number" id="appuiSumCount"
+                                    data-animation-duration="1500">0</h2>
+                            </div>
+                        </div>
 
-                    <div class="progress-list">
-                      <div class="details">
-                        <div class="title"><strong>通过1500条</strong></div>
-                      </div>
-                      <div class="status pull-right bg-transparent-black-1">
-                        <span class="animate-number" data-value="50" data-animation-duration="1500">0</span>%
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="progress progress-little progress-transparent-black">
-                        <div class="progress-bar animate-progress-bar" data-percentage="64%"></div>
-                      </div>
-                    </div>
+                        <div class="progress-list">
+                            <div class="details">
+                                <div class="title"><strong id="appuiPassCount">通过0条</strong></div>
+                            </div>
+                            <div class="status pull-right bg-transparent-black-1">
+                                <span class="animate-number" id="appuiPassRate" data-animation-duration="1500">0</span>%
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="progress progress-little progress-transparent-black">
+                                <div id="appuiPassRateProcess" class="progress-bar animate-progress-bar"></div>
+                            </div>
+                        </div>
 
-                  </div>
-                  <div class="back">
-                    <a href="/appui">
-                      <i class="fa fa-bar-chart-o fa-4x"></i>
-                      <span>点击跳转列表</span>
-                    </a>
-                  </div>
+                    </div>
+                    <div class="back">
+                        <a href="/appui">
+                            <i class="fa fa-bar-chart-o fa-4x"></i>
+                            <span>点击跳转列表</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
+            </div>
 
 
-
-              <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+            <div class="card-container col-lg-3 col-sm-6 col-sm-12">
                 <div class="card card-greensea hover">
-                  <div class="front">
+                    <div class="front">
 
-                    <div class="media">
+                        <div class="media">
                       <span class="pull-left">
                         <i class="fa fa-eraser media-object"></i>
                       </span>
 
-                      <div class="media-body">
-                        <p>接口自动化</p>
-                        <h2 class="media-heading animate-number" data-value="共3000条" data-animation-duration="1500">0</h2>
-                      </div>
-                    </div>
+                            <div class="media-body">
+                                <p>接口自动化</p>
+                                <h2 class="media-heading animate-number" id="httpSumCount"
+                                    data-animation-duration="1500">0</h2>
+                            </div>
+                        </div>
 
-                    <div class="progress-list">
-                      <div class="details">
-                        <div class="title"><strong>通过1900条</strong></div>
-                      </div>
-                      <div class="status pull-right bg-transparent-black-1">
-                        <span class="animate-number" data-value="42" data-animation-duration="1500">0</span>%
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="progress progress-little progress-transparent-black">
-                        <div class="progress-bar animate-progress-bar" data-percentage="42%"></div>
-                      </div>
-                    </div>
+                        <div class="progress-list">
+                            <div class="details">
+                                <div class="title"><strong id="httpPassCount">通过0条</strong></div>
+                            </div>
+                            <div class="status pull-right bg-transparent-black-1">
+                                <span id="httpPassRate" class="animate-number"  data-animation-duration="1500">0</span>%
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="progress progress-little progress-transparent-black">
+                                <div id="httpPassRateProcess" class="progress-bar animate-progress-bar"></div>
+                            </div>
+                        </div>
 
-                  </div>
-                  <div class="back">
-                    <a href="/interfaceAuto">
-                      <i class="fa fa-bar-chart-o fa-4x"></i>
-                      <span>点击跳转列表</span>
-                    </a>
-                  </div>
+                    </div>
+                    <div class="back">
+                        <a href="/interfaceAuto">
+                            <i class="fa fa-bar-chart-o fa-4x"></i>
+                            <span>点击跳转列表</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
+            </div>
 
 
-
-
-              <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+            <div class="card-container col-lg-3 col-sm-6 col-sm-12">
                 <div class="card card-orange hover">
-                  <div class="front">
+                    <div class="front">
 
-                    <div class="media">
+                        <div class="media">
                       <span class="pull-left">
                         <i class="fa fa-eye media-object"></i>
                       </span>
 
-                      <div class="media-body">
-                        <p>Rpc自动化</p>
-                        <h2 class="media-heading animate-number" data-value="共3000条" data-animation-duration="1500">0</h2>
-                      </div>
-                    </div>
+                            <div class="media-body">
+                                <p>Rpc自动化</p>
+                                <h2 class="media-heading animate-number" id='rpcSumCount'
+                                    data-animation-duration="1500">0</h2>
+                            </div>
+                        </div>
 
-                    <div class="progress-list">
-                      <div class="details">
-                        <div class="title"><strong>通过1900条</strong></div>
-                      </div>
-                      <div class="status pull-right bg-transparent-black-1">
-                        <span class="animate-number" data-value="42" data-animation-duration="1500">0</span>%
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="progress progress-little progress-transparent-black">
-                        <div class="progress-bar animate-progress-bar" data-percentage="42%"></div>
-                      </div>
-                    </div>
+                        <div class="progress-list">
+                            <div class="details">
+                                <div class="title"><strong id="rpcPassCount">通过0条</strong></div>
+                            </div>
+                            <div class="status pull-right bg-transparent-black-1">
+                                <span class="animate-number" id="rpcPassRate"  data-animation-duration="1500">0</span>%
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="progress progress-little progress-transparent-black">
+                                <div id="rpcPassRateProcess" class="progress-bar animate-progress-bar"></div>
+                            </div>
+                        </div>
 
-                  </div>
-                  <div class="back">
-                    <a href="/dubbo">
-                      <i class="fa fa-bar-chart-o fa-4x"></i>
-                      <span>点击跳转列表</span>
-                    </a>
-                  </div>
+                    </div>
+                    <div class="back">
+                        <a href="/dubbo">
+                            <i class="fa fa-bar-chart-o fa-4x"></i>
+                            <span>点击跳转列表</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
+            </div>
 
 
-
-
-
-
-              <div class="card-container col-lg-3 col-sm-6 col-sm-12">
+            <div class="card-container col-lg-3 col-sm-6 col-sm-12">
                 <div class="card card-amethyst hover">
-                  <div class="front">
+                    <div class="front">
 
-                    <div class="media">
+                        <div class="media">
                       <span class="pull-left">
                         <i class="fa fa-th media-object"></i>
                       </span>
 
-                      <div class="media-body">
-                        <p>App二维码</p>
-                        <h2 class="media-heading animate-number" data-value="iOS/Android">0</h2>
-                      </div>
-                    </div>
+                            <div class="media-body">
+                                <p>App二维码</p>
+                                <h2 class="media-heading animate-number" data-value="iOS/Android">0</h2>
+                            </div>
+                        </div>
 
-                    <div class="progress-list">
-                      <div class="details">
-                        <div class="title"><strong>各系统扫码下载、构建安卓渠道包</strong></div>
-                      </div>
-                      <div class="status pull-right bg-transparent-black-1">
-                        <span class="animate-number" data-value="42" data-animation-duration="1500">0</span>%
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="progress progress-little progress-transparent-black">
-                        <div class="progress-bar animate-progress-bar" data-percentage="42%"></div>
-                      </div>
-                    </div>
+                        <div class="progress-list">
+                            <div class="details">
+                                <div class="title"><strong>各系统扫码下载、构建安卓渠道包</strong></div>
+                            </div>
+                            <div class="status pull-right bg-transparent-black-1">
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="progress progress-little progress-transparent-black">
+                                <div class="progress-bar animate-progress-bar" data-percentage="100%"></div>
+                            </div>
+                        </div>
 
-                  </div>
-                  <div class="back">
-                    <a href="/qrcode">
-                      <i class="fa fa-bar-chart-o fa-4x"></i>
-                      <span>点击跳转列表</span>
-                    </a>
-                  </div>
+                    </div>
+                    <div class="back">
+                        <a href="/qrcode">
+                            <i class="fa fa-bar-chart-o fa-4x"></i>
+                            <span>点击跳转列表</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
+            </div>
 
 
-
-
-
-
-
-
-              <div class="card-container col-lg-3 col-sm-6 col-xs-12">
+            <div class="card-container col-lg-3 col-sm-6 col-xs-12">
                 <div class="card card-blue hover">
-                  <div class="front">
+                    <div class="front">
 
-                    <div class="media">
+                        <div class="media">
                       <span class="pull-left">
                         <i class="fa fa-users media-object"></i>
                       </span>
 
-                      <div class="media-body">
-                        <p>接口测试工具</p>
-                        <h2 class="media-heading animate-number" data-value="postman" data-animation-duration="1500">0</h2>
-                      </div>
-                    </div>
+                            <div class="media-body">
+                                <p>小工具</p>
+                                <h2 class="media-heading animate-number" data-animation-duration="1500">预留区域</h2>
+                            </div>
+                        </div>
 
-                    <div class="progress-list">
-                      <div class="details">
-                        <div class="title"><strong>秒钱定制的http(s)接口测试工具</strong></div>
-                      </div>
-                      <div class="status pull-right bg-transparent-black-1">
-                        <span class="animate-number" data-value="25" data-animation-duration="1500">0</span>%
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="progress progress-little progress-transparent-black">
-                        <div class="progress-bar animate-progress-bar" data-percentage="25%"></div>
-                      </div>
-                    </div>
+                        <div class="progress-list">
+                            <div class="details">
+                                <div class="title"><strong>未完待续</strong></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="progress progress-little progress-transparent-black">
+                                <div class="progress-bar animate-progress-bar" data-percentage="100%"></div>
+                            </div>
+                        </div>
 
-                  </div>
-                  <div class="back">
-                    <a href="/postman">
-                      <i class="fa fa-bar-chart-o fa-4x"></i>
-                      <span>点击跳转工具页</span>
-                    </a>
-                  </div>
+                    </div>
+                    <div class="back">
+                        <a href="#">
+                            <i class="fa fa-bar-chart-o fa-4x"></i>
+                            <span>点击跳转工具页</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
-
-
             </div>
-            <!-- /cards -->
 
 
+        </div>
+        <!-- /cards -->
 
 
-            <!-- row -->
-            <div class="row">
+        <!-- row -->
+        <div class="row">
 
 
-              <!-- col 8 -->
-              <div class="col-lg-8 col-md-12">
-
-
+            <!-- col 8 -->
+            <div class="col-lg-8 col-md-12">
 
 
                 <!-- tile -->
                 <section class="tile transparent">
-                  <!-- tile header -->
-                  <div class="tile-header color transparent-black textured rounded-top-corners">
-                    <h1><strong>自动化折线统计</strong></h1>
-                    <div class="controls">
-                      <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
-                      <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                    <!-- tile header -->
+                    <div class="tile-header color transparent-black textured rounded-top-corners">
+                        <h1><strong>自动化折线统计</strong></h1>
+                        <div class="controls">
+                            <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                        </div>
                     </div>
-                  </div>
-                  <!-- /tile header -->
+                    <!-- /tile header -->
 
 
-                  <!-- tile widget -->
-                  <div class="tile-widget color transparent-black textured">
-                    <div id="statistics-chart" class="chart statistics" style="height: 250px;"></div>
-                  </div>
-                  <!-- /tile widget -->
+                    <!-- tile widget -->
+                    <div class="tile-widget color transparent-black textured">
+                        <div id="statistics-chart" class="chart statistics" style="height: 250px;"></div>
+                    </div>
+                    <!-- /tile widget -->
                 </section>
 
-                  <section class="tile transparent">
-                  <!-- tile body -->
-                  <div class="tile-body color transparent-white rounded-bottom-corners">
-                    <div class="row">
-                      <ul class="inline">
+                <section class="tile transparent">
+                    <!-- tile body -->
+                    <div class="tile-body color transparent-white rounded-bottom-corners">
+                        <div class="row">
+                            <ul class="inline">
 
-                        <li class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                <li class="col-md-12 col-sm-12 col-xs-12 text-center">
 
-                          <h4 class="underline text-left"><strong>访问量</strong> </h4>
+                                    <h4 class="underline text-left"><strong>访问量</strong></h4>
 
-                          <div class="inner-container inline">
-                            <div data-percent="100" data-size="140" class="pie-chart inline" data-scale-color="false" data-track-color="rgba(0,0,0,0)" data-bar-color="#ffffff" data-line-width="5">
-                              <div class="text-center">
-                                <i class="fa fa-eye fa-5x"></i>
-                              </div>
-                            </div>
-                            <p class="chart-overall text-center medium-thin uppercase"><span id="accessAmount" class="big-medium animate-number" data-value="<%=accessAmount%>" data-animation-duration="2500">0</span>总访问量</p>
-                          </div>
+                                    <div class="inner-container inline">
+                                        <div data-percent="100" data-size="140" class="pie-chart inline"
+                                             data-scale-color="false" data-track-color="rgba(0,0,0,0)"
+                                             data-bar-color="#ffffff" data-line-width="5">
+                                            <div class="text-center">
+                                                <i class="fa fa-eye fa-5x"></i>
+                                            </div>
+                                        </div>
+                                        <p class="chart-overall text-center medium-thin uppercase"><span
+                                                    id="accessAmount" class="big-medium animate-number"
+                                                    data-value="<%= accessAmount %>"
+                                                    data-animation-duration="2500">0</span>总访问量</p>
+                                    </div>
 
 
-                          <div class="inner-container inline">
-                            <div data-percent="85" data-size="140" class="pie-chart inline" data-scale-color="false" data-track-color="rgba(0,0,0,0)" data-bar-color="rgba(0,0,0,.4)" data-line-width="5">
-                              <div class="text-center">
-                                <span><i class="fa fa-eye fa-5x color-transparent-black"></i></span>
-                              </div>
-                            </div>
-                            <p class="chart-overall text-center medium-thin uppercase color-transparent-black"><span class="big-medium animate-number" data-value="<%=accessAmountToday%>" data-animation-duration="2500">0</span>今日访问量</p>
-                          </div>
-                        </li>
-                      </ul>
+                                    <div class="inner-container inline">
+                                        <div data-percent="85" data-size="140" class="pie-chart inline"
+                                             data-scale-color="false" data-track-color="rgba(0,0,0,0)"
+                                             data-bar-color="rgba(0,0,0,.4)" data-line-width="5">
+                                            <div class="text-center">
+                                                <span><i class="fa fa-eye fa-5x color-transparent-black"></i></span>
+                                            </div>
+                                        </div>
+                                        <p class="chart-overall text-center medium-thin uppercase color-transparent-black">
+                                            <span class="big-medium animate-number"
+                                                  data-value="<%= accessAmountToday %>"
+                                                  data-animation-duration="2500">0</span>今日访问量</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                  </div>
-                  <!-- /tile body -->
+                    <!-- /tile body -->
                 </section>
                 <!-- /tile -->
-              </div>
-              <!-- /col 8 -->
+            </div>
+            <!-- /col 8 -->
 
 
-
-              <!-- col 4 -->
-              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-
-
+            <!-- col 4 -->
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 
 
                 <!-- tile -->
                 <section class="tile color transparent-black textured">
 
 
-
-
-                  <!-- tile header -->
-                  <div class="tile-header">
-                    <h1><strong>服务器使用率</strong></h1>
-                    <div class="controls">
-                      <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
-                      <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                    <!-- tile header -->
+                    <div class="tile-header">
+                        <h1><strong>服务器使用率</strong></h1>
+                        <div class="controls">
+                            <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                        </div>
                     </div>
-                  </div>
-                  <!-- /tile header -->
+                    <!-- /tile header -->
 
-                  <!-- tile widget -->
-                  <div class="tile-widget">
+                    <!-- tile widget -->
+                    <div class="tile-widget">
 
-                    <div class="progress-list with-heading">
-                      <div class="details">
-                        <div class="title"><h2><i class="fa fa-hdd-o"></i> <span class="animate-number" data-value="394" data-animation-duration="1600">0</span> GB</h2></div>
-                      </div>
-                      <div class="status pull-right bg-transparent-black-1">
-                        <span class="animate-number" data-value="42" data-animation-duration="1500">0</span>%
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="progress progress-little progress-transparent-black" style="margin-bottom: 5px">
-                        <div class="progress-bar animate-progress-bar" data-percentage="42%"></div>
-                      </div>
+                        <div class="progress-list with-heading">
+                            <div class="details">
+                                <div class="title"><h2><i class="fa fa-hdd-o"></i> <span class="animate-number"
+                                                                                         data-value="394"
+                                                                                         data-animation-duration="1600">0</span>
+                                        GB</h2></div>
+                            </div>
+                            <div class="status pull-right bg-transparent-black-1">
+                                <span class="animate-number" data-value="42" data-animation-duration="1500">0</span>%
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="progress progress-little progress-transparent-black" style="margin-bottom: 5px">
+                                <div class="progress-bar animate-progress-bar" data-percentage="42%"></div>
+                            </div>
+                        </div>
+                        <p class="description"><strong>394GB</strong> used of <strong
+                                    class="white-text">2,048GB</strong> on File Server</p>
                     </div>
-                    <p class="description"><strong>394GB</strong> used of <strong class="white-text">2,048GB</strong> on File Server</p>
-                  </div>
-                  <!-- /tile widget -->
+                    <!-- /tile widget -->
 
 
-                  <!-- tile body -->
-                  <div class="tile-body paddingtop">
-                    <div id="serverload-chart"></div>
-                  </div>
-                  <!-- /tile body -->
-
+                    <!-- tile body -->
+                    <div class="tile-body paddingtop">
+                        <div id="serverload-chart"></div>
+                    </div>
+                    <!-- /tile body -->
 
 
                 </section>
@@ -403,56 +393,61 @@
                 <section class="tile color transparent-black">
 
 
-
-                  <!-- tile header -->
-                  <div class="tile-header">
-                    <h1><strong>自动化饼状统计</strong></h1>
-                    <div class="controls">
-                      <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
-                      <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                    <!-- tile header -->
+                    <div class="tile-header">
+                        <h1><strong>自动化饼状统计</strong></h1>
+                        <div class="controls">
+                            <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                        </div>
                     </div>
-                  </div>
-                  <!-- /tile header -->
+                    <!-- /tile header -->
 
-                  <!-- tile body -->
-                  <div class="tile-body">
-                    <div id="browser-usage" style="height: 230px;" class="morris-chart"></div>
-                    <ul class="inline text-center chart-legend">
-                      <li><span class="badge badge-outline" style="border-color: #00a3d8"></span> PCUI自动化 <small id="pcpie">35%</small>,</li>
-                      <li><span class="badge badge-outline" style="border-color: #1693A5"></span> AppUI自动化 <small id="apppie">35%</small>,</li>
-                      <li><span class="badge badge-outline" style="border-color: #2fbbe8"></span> 接口自动化 <small id="httppie">10%</small>,</li>
-                      <li><span class="badge badge-outline" style="border-color: #2fbbe8"></span> Rpc自动化 <small id="rpcpie">20%</small>,</li>
+                    <!-- tile body -->
+                    <div class="tile-body">
+                        <div id="browser-usage" style="height: 230px;" class="morris-chart"></div>
+                        <ul class="inline text-center chart-legend">
+                            <li><span class="badge badge-outline" style="border-color: #00a3d8"></span> PCUI自动化
+                                <small id="pcpie">35%</small>
+                                ,
+                            </li>
+                            <li><span class="badge badge-outline" style="border-color: #1693A5"></span> AppUI自动化
+                                <small id="apppie">35%</small>
+                                ,
+                            </li>
+                            <li><span class="badge badge-outline" style="border-color: #2fbbe8"></span> 接口自动化
+                                <small id="httppie">10%</small>
+                                ,
+                            </li>
+                            <li><span class="badge badge-outline" style="border-color: #2fbbe8"></span> Rpc自动化
+                                <small id="rpcpie">20%</small>
+                                ,
+                            </li>
 
-                    </ul>
-                  </div>
-                  <!-- /tile body -->
-
-
+                        </ul>
+                    </div>
+                    <!-- /tile body -->
 
 
                 </section>
 
 
-
-              </div>
-              <!-- /col 4 -->
-
-
             </div>
-            <!-- /row -->
+            <!-- /col 4 -->
 
 
-            <!-- row -->
-            <div class="row">
+        </div>
+        <!-- /row -->
 
 
+        <!-- row -->
+        <div class="row">
 
 
-              <!-- col 6 -->
-              <div class="col-md-6">
+            <!-- col 6 -->
+            <div class="col-md-6">
 
 
-
-<script  type="text/javascript" src="homepageController.js"></script>
-<% include footer.ejs %>
+                <script type="text/javascript" src="homepageController.js"></script>
+                <% include footer.ejs %>
       

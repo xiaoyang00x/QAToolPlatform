@@ -57,6 +57,19 @@ router.post('/initTestCaseCount', function (req, res, next) {
 });
 
 
+// POST  获取所有pass case数
+router.post('/getPassTestCaseCount', function (req, res, next) {
+    console.log("进到/getPassTestCaseCount");
+    jenkinsTaskDao.getPassTestCaseCount()
+        .then(function (result) {
+            return res.send(result);
+        }).catch(function (reason) {
+        console.log("/getPassTestCaseCount报异常了");
+        console.log(reason);
+    })
+});
+
+
 // POST  获取所有passcase数
 router.post('/initTestCasePassCount', function (req, res, next) {
     console.log("进到/initTestCasePassCount");

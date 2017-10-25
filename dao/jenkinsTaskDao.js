@@ -118,6 +118,28 @@ module.exports = {
     },
 
 
+    getPassTestCaseCount: function getPassTestCaseCount() {
+        var p = new Promise(function (resolve, reject) {
+            JenkinsTask.aggregate(
+                {
+                    $group: {
+                        _id: "$deviceType",
+                        passnum_tutorial: {$sum: "$pass"}
+                    }
+                }
+            ).exec(function (err, res) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(res);
+                }
+            })
+        })
+        return p;
+
+    },
+
+
     initTestCasePassCount: function initTestCasePassCount() {
         var p = new Promise(function (resolve, reject) {
             JenkinsTask.aggregate(
