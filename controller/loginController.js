@@ -10,7 +10,7 @@ $(document).ready(function () {
                 alert("Connection error");
             },
             success: function (data) {
-                console.log(data);
+                console.log("data" + data);
             }
         })
     })

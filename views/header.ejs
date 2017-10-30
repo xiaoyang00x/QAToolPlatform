@@ -24,8 +24,12 @@
     <link rel="stylesheet" href="assets/js/vendor/datatables/css/ColVis.css">
     <link rel="stylesheet" href="assets/js/vendor/datatables/css/TableTools.css">
     <link href="assets/css/minimal.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
+    <script type="text/javascript" src="js/sweetalert2.js"></script>
+
     <script type="text/javascript" src="controllerConfig.js"></script>
     <script type="text/javascript" src="headerController.js"></script>
+
 </head>
 
 <body class="bg-1">
@@ -72,7 +76,7 @@
                             <img src="assets/images/profile-photo.jpg" alt/>
                         </div>
                         <a class="dropdown-toggle options" data-toggle="dropdown" href="#">
-                            <%= user.name %> <i class="fa fa-caret-down"></i>
+                            <%=user.nickName %> <i class="fa fa-caret-down"></i>
                         </a>
 
                         <ul class="dropdown-menu arrow settings">
@@ -97,7 +101,7 @@
                                 <a href="#"><i class="fa fa-user"></i>设置</a>
                             </li>
 
-                            <% if(user.name == 'fdsfds') { %>
+                            <% if(user.role == '1') { %>
                             <li>
                                 <a href="/signup"><i class="fa fa-plus"></i>注册</a>
                             </li>

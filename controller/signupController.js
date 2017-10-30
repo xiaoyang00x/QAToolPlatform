@@ -55,4 +55,47 @@ $(function () {
     $('.tabdrop').tabdrop({text: '<i class="fa fa-th-list"></i>'});
 
 
+    $("#finish").click(function () {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "http://" + window.serverIP + ":3000/signup",
+            data: $("form").serialize(),// 你的formid
+            async: false,
+            error: function (request) {
+                console.log("进到error了");
+                alert(request);
+            },
+            success: function (data) {
+                console.log("进到success了");
+                if (data == "该用户名已被注册") {
+                    swal({
+                        title: '注册失败',
+                        html: $('<div>')
+                            .addClass('some-class')
+                            .text('用户名已经存在'),
+                        animation: false,
+                        customClass: 'animated tada'
+                    }).then(function (){
+                        window.location.reload();
+                    })
+                } else {
+                    swal({
+                        title: '注册成功',
+                        html: $('<div>')
+                            .addClass('some-class')
+                            .text('该账号可以使用喽'),
+                        animation: false,
+                        customClass: 'animated tada'
+                    }).then(function () {
+                        window.location.reload();
+
+                    })
+                }
+
+            }
+        })
+    })
+
+
 })
