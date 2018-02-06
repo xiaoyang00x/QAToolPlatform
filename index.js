@@ -1,4 +1,4 @@
-
+require('events').EventEmitter.prototype._maxListeners = 100;
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
@@ -86,10 +86,6 @@ app.listen(config.port, function () {
 
 new watchZip();
 new saveData();
-
-
-
-
 
 
 

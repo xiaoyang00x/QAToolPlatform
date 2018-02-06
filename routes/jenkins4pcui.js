@@ -3,11 +3,9 @@ var express = require('express');
 var router = express.Router();
 var JenkinsTask = require('../models/jenkinsTask.js');
 var jenkinsTaskDao = require('../dao/jenkinsTaskDao');
-
-//var Autotest = require('../models/autotest')
 var autotaskDao = require('../dao/autotaskDao');
 
-var jenkins = jenkinsapi.init("http://xiaoyang00x:xiaoyang00x@172.18.0.53:9999");
+var jenkins = jenkinsapi.init("http://yangyutest:yangyutest@10.4.238.10:8080");
 
 
 //GET /signin 登录页

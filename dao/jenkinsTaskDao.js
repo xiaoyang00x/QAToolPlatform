@@ -80,6 +80,7 @@ module.exports = {
                     }
                 },
                 {$sort: {"_id": 1}}
+
             ).exec(function (err, res) {
                 if (err) {
                     reject(err)
@@ -92,6 +93,7 @@ module.exports = {
                 }
             })
         })
+
         return p;
     },
 

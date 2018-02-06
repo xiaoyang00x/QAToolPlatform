@@ -3,11 +3,12 @@ var express = require('express');
 var router = express.Router();
 var UserModel = require('../models/user');
 var UserDao = require('../dao/userDao');
-var redis = require("redis");
-var client = require("../lib/redis").createClient();
 require('date-utils');
-var tomorrow = Date.tomorrow();
 var date = new Date();
+var tomorrow = Date.tomorrow();
+
+
+
 
 //var checkNotLogin = require('../middlewares/check').checkNotLogin;
 
@@ -37,51 +38,9 @@ router.post('/', function (req, res, next) {
         } else {
             console.log("密码正确");
             req.session.user = result[0];
-
-            // 每次有用户登陆的时候，都用redis来记录总的登陆总次数。
-            client.get("accessAmount", function (err, result) {
-                if (result === null || result === undefined) {
-                    client.set("accessAmount", 40, redis.print);
-                } else {
-                    client.get("accessAmount", function (error, result) {
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            result++;
-                            client.set("accessAmount", result, function (error, data) {
-                                if (error) {
-                                    console.log(error);
-                                }
-                            })
-                        }
-                    })
-                }
-            });
-
-            // 每次有用户登陆的时候，都用redis来记录总的今日的登陆总次数。
-            client.get("accessAmountToday", function (err, result) {
-                if (result === null || result === undefined) {
-                    console.log("Still have " + date.getSecondsBetween(tomorrow) + " seconds to go before tomorrow.");
-                    client.set("accessAmountToday", 1, "EX", date.getSecondsBetween(tomorrow));
-                } else {
-                    client.get("accessAmountToday", function (error, result) {
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            result++;
-                            client.set("accessAmountToday", result, "EX", date.getSecondsBetween(tomorrow), function (error, data) {
-                                if (error) {
-                                    console.log(error);
-                                }
-                            })
-                        }
-                    })
-                }
-            });
             return res.redirect('/home');
         }
     });
-
 
 });
 

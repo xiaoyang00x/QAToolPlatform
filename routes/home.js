@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var accessAmountDao = require("../dao/accessAmountDao");
 var jenkinsTaskDao = require("../dao/jenkinsTaskDao");
 
 
@@ -8,16 +7,8 @@ var jenkinsTaskDao = require("../dao/jenkinsTaskDao");
 router.get('/', function (req, res, next) {
 
     if (req.session.user) {
-        let accessAmountAll = 0;
-        accessAmountDao.getAccessAmount("accessAmount").then(function (data) {
-            accessAmountAll = data;
-            return accessAmountDao.getAccessAmount("accessAmountToday");
-        }).then(function (todayData) {
-            res.render('homePage', {"accessAmountToday": todayData, "accessAmount": accessAmountAll});
-        }).catch(function (error) {
-            console.log("Get redis error: " + error);
-        });
-
+        console.log("/sign进来了")
+        res.render('homePage');
     } else {
         res.redirect('/signin');
 
