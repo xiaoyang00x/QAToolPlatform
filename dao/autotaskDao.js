@@ -30,10 +30,10 @@ module.exports = {
 
           Autotask.remove(wherestr, function(err, res){
               if (err) {
-                 reject("删除失败");
+                 reject(err);
               }
               else {
-                resolve("删除成功");
+                resolve(res);
               }
           })
         })

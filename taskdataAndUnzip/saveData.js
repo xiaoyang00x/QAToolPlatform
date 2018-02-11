@@ -184,7 +184,7 @@ function saveDataZip() {
 
 
     if (!watcher) {
-        watcher = chokidar.watch(config.unzipPath);
+        watcher = chokidar.watch(config.reportPath);
     }
     watcher
         .on('addDir', addDirecotryListener)

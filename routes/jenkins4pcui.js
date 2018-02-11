@@ -4,8 +4,8 @@ var router = express.Router();
 var JenkinsTask = require('../models/jenkinsTask.js');
 var jenkinsTaskDao = require('../dao/jenkinsTaskDao');
 var autotaskDao = require('../dao/autotaskDao');
-
-var jenkins = jenkinsapi.init("http://yangyutest:yangyutest@10.4.238.10:8080");
+var logger = require('../index').logger('jenkins4pcui');
+var jenkins = jenkinsapi.init("http://yangyu:yangyu@10.5.233.3:8080");
 
 
 //GET /signin 登录页
@@ -22,33 +22,37 @@ router.get('/getAllPCUITask', function (req, res, next) {
 
 router.post('/deletePCUITask', function (req, res, next) {
     var AssociationID = req.fields.AssociationID;
-    console.log("进来了----------AssociationID" + AssociationID);
+    logger.info("***********************start**************************");
+    logger.info("*************************************************");
+    logger.info("进来了----------AssociationID : " + AssociationID);
     jenkinsTaskDao.del({"associationID": AssociationID})
         .then(function (data) {
-            console.log("AssociationID JenkinsTask 删除成功");
+            logger.info("AssociationID : "+AssociationID +" 的autoTask 正在删除");
             return autotaskDao.del({"associationID": AssociationID})
         })
         .then(function (data) {
-            console.log("AssociationID autoTask 删除成功");
+            logger.info("AssociationID : "+AssociationID +" 的autoTask 删除成功");
+            logger.info("*************************************************");
+            logger.info("***********************end**************************");
             res.json(data);
         })
         .catch(function (reason) {
-            console.log('rejected');
-            console.log(reason);
+            logger.info('rejected');
+            logger.error(reason);
         })
 });
 
 
 router.post('/', function (req, res, next) {
 
-    console.log("进来这个方法了1234");
+    logger.info("***********************start**************************");
+    logger.info("*************************************************");
     var TestName = req.fields.TestName;
     var Broswertype = req.fields.Broswertype;
     var AssociationID = req.fields.AssociationID;
     var Status = req.fields.Status;
     var Time = req.fields.Time;
     var queryCountTime = new Date();
-
     var JenkinsTaskInstance = new JenkinsTask({
         'testname': TestName,
         'broswertype': Broswertype,
@@ -61,7 +65,7 @@ router.post('/', function (req, res, next) {
         'deviceType': 'pc'
     });
 
-    jenkins.build('H5AutomationTest4system', {
+    jenkins.build('AutomationTestJob', {
         deviceType: 'pc',
         testName: TestName,
         isVideo: 'false',
@@ -69,13 +73,15 @@ router.post('/', function (req, res, next) {
         isLocalVideo: 'false',
         associationID: AssociationID
     }, function (err, data) {
-        console.log(data);
+        logger.info(data);
         if (err) {
-            return console.log(err);
+            return logger.error(err);
         } else {
-            console.log("请求成功:------------------- " + data);
+            logger.info("请求成功:------------------- " + data);
             jenkinsTaskDao.insert(JenkinsTaskInstance, function (err, result) {
                 res.json(data);
+                logger.info("*************************************************");
+                logger.info("***********************end**************************");
             });
         }
     });

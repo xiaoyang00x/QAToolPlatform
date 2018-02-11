@@ -56,7 +56,7 @@ function unzip(path_){
 	var p = new Promise(function(resolve, reject){	
 		console.log(config.reportPath+path.basename(path_, '.zip'));
 		if(fs.existsSync(path_)){
-			unzip.extractEntryTo(/*entry name*/"AutoTestReustReport/testng-results.xml", /*target path*/config.unzipPath+path.basename(path_, '.zip'), /*maintainEntryPath*/false, /*overwrite*/false);
+			unzip.extractEntryTo(/*entry name*/"AutoTestReport/testng-results.xml", /*target path*/config.unzipPath+path.basename(path_, '.zip'), /*maintainEntryPath*/false, /*overwrite*/false);
 		    resolve(path_+'解压完成');
 		}else{
 			 reject('文件都不存在');
@@ -82,9 +82,8 @@ function directoryRemovedListener(path) {
   console.info('Directory', path, 'has been removed')
 }
 
-
 	if (!watcher) {
-	watcher = chokidar.watch(config.reportPath)
+	watcher = chokidar.watch(config.unzipPath);
 	}
 	watcher
 	.on('add', addFileListener)
@@ -99,4 +98,5 @@ function directoryRemovedListener(path) {
 	})
 }
 
+watchZip();
 module.exports = watchZip;
