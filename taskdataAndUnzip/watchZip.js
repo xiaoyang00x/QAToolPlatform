@@ -98,5 +98,4 @@ function directoryRemovedListener(path) {
 	})
 }
 
-watchZip();
 module.exports = watchZip;

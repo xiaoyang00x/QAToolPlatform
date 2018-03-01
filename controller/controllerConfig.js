@@ -3,4 +3,4 @@
  */
 
 //主机的ip地址
-window.serverIP="172.18.118.60"
+window.serverIP="172.18.118.89"
